@@ -1,0 +1,103 @@
+Executed at: 2026-10-28T17:56:02.209477+08:00
+Python: 3.14.6
+Mode: offline
+COMMAND: C:\Python314\python.exe -B -m unittest discover -s tests -p test_agent.py -v
+
+test_bad_json_falls_back (test_agent.AgentTests.test_bad_json_falls_back) ... ok
+test_booking_dates (test_agent.AgentTests.test_booking_dates) ... ok
+test_cancel_specific_rain_day_and_shorten_trip (test_agent.AgentTests.test_cancel_specific_rain_day_and_shorten_trip) ... ok
+test_chinese_budget_does_not_become_city (test_agent.AgentTests.test_chinese_budget_does_not_become_city) ... ok
+test_counts_and_origin (test_agent.AgentTests.test_counts_and_origin) ... ok
+test_defaults_are_explicitly_unconfirmed (test_agent.AgentTests.test_defaults_are_explicitly_unconfirmed) ... ok
+test_disabled_weather_does_not_call_provider (test_agent.AgentTests.test_disabled_weather_does_not_call_provider) ... ok
+test_empty_input_keeps_previous (test_agent.AgentTests.test_empty_input_keeps_previous) ... ok
+test_exact_budget_boundary (test_agent.AgentTests.test_exact_budget_boundary) ... ok
+test_explicit_fields_remove_assumptions (test_agent.AgentTests.test_explicit_fields_remove_assumptions) ... ok
+test_explicit_local_value_has_precedence (test_agent.AgentTests.test_explicit_local_value_has_precedence) ... ok
+test_failed_weather_discards_stale_daily (test_agent.AgentTests.test_failed_weather_discards_stale_daily) ... ok
+test_four_rounds_retain_state_and_budget (test_agent.AgentTests.test_four_rounds_retain_state_and_budget) ... ok
+test_http_adapter_builds_json_request (test_agent.AgentTests.test_http_adapter_builds_json_request) ... ok
+test_incomplete_weather_has_no_forecast (test_agent.AgentTests.test_incomplete_weather_has_no_forecast) ... ok
+test_inconsistent_rule_total_is_not_shown_as_verified (test_agent.AgentTests.test_inconsistent_rule_total_is_not_shown_as_verified) ... ok
+test_invalid_caller_contract_raises_clear_error (test_agent.AgentTests.test_invalid_caller_contract_raises_clear_error) ... ok
+test_invalid_generic_ideas_fall_back (test_agent.AgentTests.test_invalid_generic_ideas_fall_back) ... ok
+test_invalid_local_date_retains_last_reliable_date (test_agent.AgentTests.test_invalid_local_date_retains_last_reliable_date) ... ok
+test_invalid_local_numbers_are_visible (test_agent.AgentTests.test_invalid_local_numbers_are_visible) ... ok
+test_invalid_model_fields_rejected (test_agent.AgentTests.test_invalid_model_fields_rejected) ... ok
+test_invalid_model_shapes_fall_back (test_agent.AgentTests.test_invalid_model_shapes_fall_back) ... ok
+test_invalid_weather_payloads_degrade (test_agent.AgentTests.test_invalid_weather_payloads_degrade) ... ok
+test_json_and_legacy_constructor_compatibility (test_agent.AgentTests.test_json_and_legacy_constructor_compatibility) ... ok
+test_low_walking_rule_results_are_preserved_without_stale_warning (test_agent.AgentTests.test_low_walking_rule_results_are_preserved_without_stale_warning) ... ok
+test_lower_budget_can_keep_an_already_affordable_plan (test_agent.AgentTests.test_lower_budget_can_keep_an_already_affordable_plan) ... ok
+test_mixed_or_decimal_local_numbers_do_not_crash_or_truncate (test_agent.AgentTests.test_mixed_or_decimal_local_numbers_do_not_crash_or_truncate) ... ok
+test_model_partial_merge_retains_conditions (test_agent.AgentTests.test_model_partial_merge_retains_conditions) ... ok
+test_model_retry_success (test_agent.AgentTests.test_model_retry_success) ... ok
+test_model_text_cannot_become_a_price_or_weather_fact (test_agent.AgentTests.test_model_text_cannot_become_a_price_or_weather_fact) ... ok
+test_model_timeout_retries_twice_and_preserves_state (test_agent.AgentTests.test_model_timeout_retries_twice_and_preserves_state) ... ok
+test_no_date_and_out_of_range (test_agent.AgentTests.test_no_date_and_out_of_range) ... ok
+test_no_key_never_calls_model (test_agent.AgentTests.test_no_key_never_calls_model) ... ok
+test_non_chengdu_budget_unverified (test_agent.AgentTests.test_non_chengdu_budget_unverified) ... ok
+test_non_chengdu_preference_trace_does_not_claim_chengdu_rule_execution (test_agent.AgentTests.test_non_chengdu_preference_trace_does_not_claim_chengdu_rule_execution) ... ok
+test_non_chengdu_simulated_rain_uses_indoor_directions (test_agent.AgentTests.test_non_chengdu_simulated_rain_uses_indoor_directions) ... ok
+test_previous_is_not_mutated (test_agent.AgentTests.test_previous_is_not_mutated) ... ok
+test_provider_cannot_mutate_history (test_agent.AgentTests.test_provider_cannot_mutate_history) ... ok
+test_rule_unmet_constraint_warning_is_not_hidden (test_agent.AgentTests.test_rule_unmet_constraint_warning_is_not_hidden) ... ok
+test_seven_day_boundary (test_agent.AgentTests.test_seven_day_boundary) ... ok
+test_weather_exception_does_not_interrupt (test_agent.AgentTests.test_weather_exception_does_not_interrupt) ... ok
+test_weather_mock_success_and_live_rain (test_agent.AgentTests.test_weather_mock_success_and_live_rain) ... ok
+test_weather_wrong_dates_degrade (test_agent.AgentTests.test_weather_wrong_dates_degrade) ... ok
+test_zero_and_low_budget_are_not_raised_to_default (test_agent.AgentTests.test_zero_and_low_budget_are_not_raised_to_default) ... ok
+
+----------------------------------------------------------------------
+Ran 44 tests in 0.156s
+
+OK
+
+EXIT_CODE: 0
+COMMAND: C:\Python314\python.exe -B demo_agent.py --write-evidence
+
+第1轮：去成都三天，预算3000元，带一位老人
+需求： {"city": "成都", "start_date": "", "days": 3, "budget": 3000, "adults": 1, "elderly": 1, "children": 0, "pace": "舒缓", "rain_days": [], "preferences": [], "origin": "", "assumed_fields": ["adults", "children", "pace"]}
+结果： 已为2人生成成都3天行程；估算¥2790，预算¥3000。符合预算。
+预算状态： estimated_within_budget
+调整： 无
+提示： 景点名称和价格仅用于课程演示；开放时间、门票及预约要求须出发前核对。；未指定出发地时，预算不含往返成都的大交通。；未提供准确出发日期；无法查询逐日天气，也无法计算提醒日期。；演示设置已关闭实时天气；未生成天气预报。；以下字段仍使用演示默认值，未经用户确认：成人数、儿童数、节奏；请确认同行人数和预算范围。
+
+第2轮：第二天下雨，改成室内行程
+需求： {"city": "成都", "start_date": "", "days": 3, "budget": 3000, "adults": 1, "elderly": 1, "children": 0, "pace": "舒缓", "rain_days": [2], "preferences": [], "origin": "", "assumed_fields": ["adults", "children", "pace"]}
+结果： 已为2人生成成都3天行程；估算¥2830，预算¥3000。符合预算。
+预算状态： estimated_within_budget
+调整： 第2天：将杜甫草堂替换为金沙遗址博物馆（雨天/行动强度约束）。；第2天：将宽窄巷子替换为四川博物院（雨天/行动强度约束）。
+提示： 景点名称和价格仅用于课程演示；开放时间、门票及预约要求须出发前核对。；未指定出发地时，预算不含往返成都的大交通。；未提供准确出发日期；无法查询逐日天气，也无法计算提醒日期。；演示设置已关闭实时天气；未生成天气预报。；雨天条件由用户指定，仅用于情境演示；不代表实时天气。；以下字段仍使用演示默认值，未经用户确认：成人数、儿童数、节奏；请确认同行人数和预算范围。
+
+第3轮：预算降到2500元
+需求： {"city": "成都", "start_date": "", "days": 3, "budget": 2500, "adults": 1, "elderly": 1, "children": 0, "pace": "舒缓", "rain_days": [2], "preferences": [], "origin": "", "assumed_fields": ["adults", "children", "pace"]}
+结果： 已为2人生成成都3天行程；估算¥2070，预算¥2500。符合预算。
+预算状态： estimated_within_budget
+调整： 第2天：将杜甫草堂替换为金沙遗址博物馆（雨天/行动强度约束）。；第2天：将宽窄巷子替换为四川博物院（雨天/行动强度约束）。；预算约束：住宿改为经济型酒店方案，并降低餐饮与市内交通估算。
+提示： 景点名称和价格仅用于课程演示；开放时间、门票及预约要求须出发前核对。；未指定出发地时，预算不含往返成都的大交通。；未提供准确出发日期；无法查询逐日天气，也无法计算提醒日期。；演示设置已关闭实时天气；未生成天气预报。；雨天条件由用户指定，仅用于情境演示；不代表实时天气。；以下字段仍使用演示默认值，未经用户确认：成人数、儿童数、节奏；请确认同行人数和预算范围。
+
+第4轮：尽量少走路
+需求： {"city": "成都", "start_date": "", "days": 3, "budget": 2500, "adults": 1, "elderly": 1, "children": 0, "pace": "舒缓", "rain_days": [2], "preferences": ["少走路"], "origin": "", "assumed_fields": ["adults", "children"]}
+结果： 已为2人生成成都3天行程；估算¥2070，预算¥2500。符合预算。
+预算状态： estimated_within_budget
+调整： 第2天：将杜甫草堂替换为金沙遗址博物馆（雨天/行动强度约束）。；第2天：将宽窄巷子替换为四川博物院（雨天/行动强度约束）。；预算约束：住宿改为经济型酒店方案，并降低餐饮与市内交通估算。
+提示： 景点名称和价格仅用于课程演示；开放时间、门票及预约要求须出发前核对。；未指定出发地时，预算不含往返成都的大交通。；未提供准确出发日期；无法查询逐日天气，也无法计算提醒日期。；演示设置已关闭实时天气；未生成天气预报。；雨天条件由用户指定，仅用于情境演示；不代表实时天气。；以下字段仍使用演示默认值，未经用户确认：成人数、儿童数；请确认同行人数和预算范围。
+
+离线场景：
+non_chengdu: weather=disabled; budget=unverified; 演示模式：使用本地需求提取
+weather_failure: weather=error; budget=estimated_within_budget; 演示模式：使用本地需求提取
+invalid_date: weather=disabled; budget=estimated_within_budget; 演示模式：使用本地需求提取；start_date 输入无效，已保留原值；请检查日期、类型或允许范围。
+zero_budget: weather=disabled; budget=estimated_over_budget; 演示模式：使用本地需求提取
+seven_days: weather=disabled; budget=estimated_over_budget; 演示模式：使用本地需求提取
+no_key: weather=disabled; budget=estimated_within_budget; 未配置密钥：使用本地需求提取
+model_timeout: weather=disabled; budget=estimated_within_budget; DeepSeek 两次调用失败（TimeoutError），已回退本地提取
+bad_json: weather=disabled; budget=estimated_within_budget; DeepSeek 两次调用失败（JSONDecodeError），已回退本地提取
+mock_model_success: weather=disabled; budget=estimated_within_budget; DeepSeek deepseek-flash 已提取需求
+mock_weather_success: weather=ok; budget=estimated_within_budget; 演示模式：使用本地需求提取
+weather_out_of_range: weather=out_of_range; budget=estimated_within_budget; 演示模式：使用本地需求提取
+
+证据已保存： D:\HuaweiMoveData\Users\华为\Desktop\周三大作业\docs\evidence\agent-demo.json
+
+
+EXIT_CODE: 0
