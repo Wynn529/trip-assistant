@@ -1,0 +1,12 @@
+{
+  "hotels": [{"name":"成都示例酒店","price_per_night":320}],
+  "spots": [
+    {"name":"宽窄巷子","ticket":0},
+    {"name":"大熊猫基地","ticket":55},
+    {"name":"锦里","ticket":0},
+    {"name":"博物馆(室内备选)","ticket":20}
+  ],
+  "meal_price_per_person":60,
+  "traffic_per_day":80,
+  "flex_cost":150
+}
