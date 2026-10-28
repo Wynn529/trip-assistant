@@ -1,0 +1,19 @@
+{
+  "delivery_version": "A-1.2-review",
+  "contract_schema_version": "1.0",
+  "generated_at": "2026-10-28T19:30:24.942284+08:00",
+  "python": "3.14.6",
+  "status": "passed",
+  "log": "docs/evidence/agent-checks-20261028-193024-942284.log",
+  "source_sha256": {
+    "travel_agent/contracts.py": "ecbde5bd4e8523571c3b6a38b17756c01290ce7d79bb8f1780a369f825c21068",
+    "travel_agent/llm.py": "0f10d0b0d94dbd3bfa00294541a22060e116b9a1206b3ad93a88e1c7bdaa0018",
+    "travel_agent/service.py": "e18cdf00bd3f00dc2540165b63d780a942231fa881c31e7c8ae501f0e04d2f67",
+    "tests/test_agent.py": "8590cc23322e1fe8dafa5fca708025b23dead06852f097aa6a565e7600f0d281",
+    "demo_agent.py": "725ab9fcf47803d499be3b0659a7d287c6a7f5d3e740d095a9df830634187b38",
+    "run_agent_checks.py": "ed75a78f79a174dbaac6ace27941ee1cc68746f966964413c1073114e5c122e5"
+  },
+  "real_model_test": "not tested",
+  "real_weather_test": "not tested",
+  "baseline_archive_sha256": "ae6bb8edb0399021ba81862ee7f8c9982921ca07497e92ebf2c13ac370983bb7"
+}
