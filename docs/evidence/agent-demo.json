@@ -1,0 +1,3276 @@
+{
+  "delivery_version": "A-1.1",
+  "contract_schema_version": "1.0",
+  "generated_at": "2026-10-28T19:05:51.579838+08:00",
+  "python": "3.14.6",
+  "mode": "offline; model/weather success cases are test doubles",
+  "network_calls": 0,
+  "rounds": [
+    {
+      "input": "去成都三天，预算3000元，带一位老人",
+      "elapsed_seconds": 0.033665,
+      "response": {
+        "request": {
+          "city": "成都",
+          "start_date": "",
+          "days": 3,
+          "budget": 3000,
+          "adults": 1,
+          "elderly": 1,
+          "children": 0,
+          "pace": "舒缓",
+          "rain_days": [],
+          "preferences": [],
+          "origin": "",
+          "assumed_fields": [
+            "adults",
+            "children",
+            "pace"
+          ]
+        },
+        "weather": {
+          "status": "disabled",
+          "summary": "演示设置已关闭实时天气；未生成天气预报。",
+          "daily": [],
+          "source": "none"
+        },
+        "itinerary": [
+          {
+            "day": 1,
+            "date": "",
+            "rainy": false,
+            "rain_source": "",
+            "activities": [
+              {
+                "id": "wuhou",
+                "name": "武侯祠",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 50,
+                "area": "武侯祠片区",
+                "duration_hours": 2
+              },
+              {
+                "id": "jinli",
+                "name": "锦里步行街",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "武侯祠片区",
+                "duration_hours": 1.5
+              }
+            ],
+            "note": "每天安排不超过两个主要地点，保留午间休息。"
+          },
+          {
+            "day": 2,
+            "date": "",
+            "rainy": false,
+            "rain_source": "",
+            "activities": [
+              {
+                "id": "dufu",
+                "name": "杜甫草堂",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 50,
+                "area": "青羊区",
+                "duration_hours": 2
+              },
+              {
+                "id": "kuanzhai",
+                "name": "宽窄巷子",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "青羊区",
+                "duration_hours": 1.5
+              }
+            ],
+            "note": "每天安排不超过两个主要地点，保留午间休息。"
+          },
+          {
+            "day": 3,
+            "date": "",
+            "rainy": false,
+            "rain_source": "",
+            "activities": [
+              {
+                "id": "science",
+                "name": "四川科技馆",
+                "indoor": true,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "市中心",
+                "duration_hours": 2
+              },
+              {
+                "id": "peoplespark",
+                "name": "人民公园",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "青羊区",
+                "duration_hours": 1.5
+              }
+            ],
+            "note": "每天安排不超过两个主要地点，保留午间休息。"
+          }
+        ],
+        "budget_items": [
+          {
+            "category": "住宿",
+            "amount": 1240,
+            "detail": "舒适型酒店方案 × 2晚（估算）"
+          },
+          {
+            "category": "餐饮",
+            "amount": 720,
+            "detail": "2人 × 3天（估算）"
+          },
+          {
+            "category": "市内交通",
+            "amount": 450,
+            "detail": "打车/公共交通组合（估算）"
+          },
+          {
+            "category": "景点门票",
+            "amount": 200,
+            "detail": "按样例单价估算，实际价格需核对"
+          },
+          {
+            "category": "机动费用",
+            "amount": 180,
+            "detail": "临时支出预留"
+          }
+        ],
+        "total_cost": 2790,
+        "within_budget": true,
+        "changes": [],
+        "warnings": [
+          "景点名称和价格仅用于课程演示；开放时间、门票及预约要求须出发前核对。",
+          "未指定出发地时，预算不含往返成都的大交通。",
+          "未提供准确出发日期；无法查询逐日天气，也无法计算提醒日期。",
+          "演示设置已关闭实时天气；未生成天气预报。",
+          "以下字段仍使用演示默认值，未经用户确认：成人数、儿童数、节奏；请确认同行人数和预算范围。"
+        ],
+        "booking_tasks": [
+          {
+            "task": "核对并预订住宿",
+            "due": "待确定出发日期",
+            "status": "待办"
+          },
+          {
+            "task": "核对往返交通和证件",
+            "due": "待确定出发日期",
+            "status": "待办"
+          },
+          {
+            "task": "出发前复查天气，必要时带伞",
+            "due": "待确定出发日期",
+            "status": "待办"
+          },
+          {
+            "task": "检查身份证及票证",
+            "due": "出发前",
+            "status": "待办"
+          }
+        ],
+        "trace": [
+          {
+            "step": "需求提取",
+            "detail": "演示模式：使用本地需求提取"
+          },
+          {
+            "step": "约束记忆",
+            "detail": "成都，3天，2人，预算¥3000，老人1人"
+          },
+          {
+            "step": "天气工具",
+            "detail": "disabled：演示设置已关闭实时天气；未生成天气预报。"
+          },
+          {
+            "step": "数据查询",
+            "detail": "加载成都景点、酒店、餐饮及市内交通样例"
+          },
+          {
+            "step": "约束检查",
+            "detail": "估算总额¥2790；预算¥3000；雨天替换0项"
+          },
+          {
+            "step": "预算状态",
+            "detail": "estimated_within_budget"
+          },
+          {
+            "step": "结果生成",
+            "detail": "输出行程、预算、提醒清单与调整原因"
+          }
+        ],
+        "coverage": "成都样例数据：景点和费用均为演示估算",
+        "answer": "已为2人生成成都3天行程；估算¥2790，预算¥3000。符合预算。",
+        "budget_status": "estimated_within_budget",
+        "extraction_status": "演示模式：使用本地需求提取",
+        "schema_version": "1.0"
+      }
+    },
+    {
+      "input": "第二天下雨，改成室内行程",
+      "elapsed_seconds": 0.003208,
+      "response": {
+        "request": {
+          "city": "成都",
+          "start_date": "",
+          "days": 3,
+          "budget": 3000,
+          "adults": 1,
+          "elderly": 1,
+          "children": 0,
+          "pace": "舒缓",
+          "rain_days": [
+            2
+          ],
+          "preferences": [],
+          "origin": "",
+          "assumed_fields": [
+            "adults",
+            "children",
+            "pace"
+          ]
+        },
+        "weather": {
+          "status": "disabled",
+          "summary": "演示设置已关闭实时天气；未生成天气预报。",
+          "daily": [],
+          "source": "none"
+        },
+        "itinerary": [
+          {
+            "day": 1,
+            "date": "",
+            "rainy": false,
+            "rain_source": "",
+            "activities": [
+              {
+                "id": "wuhou",
+                "name": "武侯祠",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 50,
+                "area": "武侯祠片区",
+                "duration_hours": 2
+              },
+              {
+                "id": "jinli",
+                "name": "锦里步行街",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "武侯祠片区",
+                "duration_hours": 1.5
+              }
+            ],
+            "note": "每天安排不超过两个主要地点，保留午间休息。"
+          },
+          {
+            "day": 2,
+            "date": "",
+            "rainy": true,
+            "rain_source": "演示模拟",
+            "activities": [
+              {
+                "id": "jinsha",
+                "name": "金沙遗址博物馆",
+                "indoor": true,
+                "elderly_friendly": true,
+                "price_per_person": 70,
+                "area": "青羊区",
+                "duration_hours": 2
+              },
+              {
+                "id": "sichuanmuseum",
+                "name": "四川博物院",
+                "indoor": true,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "青羊区",
+                "duration_hours": 2
+              }
+            ],
+            "note": "每天安排不超过两个主要地点，保留午间休息。"
+          },
+          {
+            "day": 3,
+            "date": "",
+            "rainy": false,
+            "rain_source": "",
+            "activities": [
+              {
+                "id": "science",
+                "name": "四川科技馆",
+                "indoor": true,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "市中心",
+                "duration_hours": 2
+              },
+              {
+                "id": "peoplespark",
+                "name": "人民公园",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "青羊区",
+                "duration_hours": 1.5
+              }
+            ],
+            "note": "每天安排不超过两个主要地点，保留午间休息。"
+          }
+        ],
+        "budget_items": [
+          {
+            "category": "住宿",
+            "amount": 1240,
+            "detail": "舒适型酒店方案 × 2晚（估算）"
+          },
+          {
+            "category": "餐饮",
+            "amount": 720,
+            "detail": "2人 × 3天（估算）"
+          },
+          {
+            "category": "市内交通",
+            "amount": 450,
+            "detail": "打车/公共交通组合（估算）"
+          },
+          {
+            "category": "景点门票",
+            "amount": 240,
+            "detail": "按样例单价估算，实际价格需核对"
+          },
+          {
+            "category": "机动费用",
+            "amount": 180,
+            "detail": "临时支出预留"
+          }
+        ],
+        "total_cost": 2830,
+        "within_budget": true,
+        "changes": [
+          "第2天：将杜甫草堂替换为金沙遗址博物馆（雨天/行动强度约束）。",
+          "第2天：将宽窄巷子替换为四川博物院（雨天/行动强度约束）。"
+        ],
+        "warnings": [
+          "景点名称和价格仅用于课程演示；开放时间、门票及预约要求须出发前核对。",
+          "未指定出发地时，预算不含往返成都的大交通。",
+          "未提供准确出发日期；无法查询逐日天气，也无法计算提醒日期。",
+          "演示设置已关闭实时天气；未生成天气预报。",
+          "雨天条件由用户指定，仅用于情境演示；不代表实时天气。",
+          "以下字段仍使用演示默认值，未经用户确认：成人数、儿童数、节奏；请确认同行人数和预算范围。"
+        ],
+        "booking_tasks": [
+          {
+            "task": "核对并预订住宿",
+            "due": "待确定出发日期",
+            "status": "待办"
+          },
+          {
+            "task": "核对往返交通和证件",
+            "due": "待确定出发日期",
+            "status": "待办"
+          },
+          {
+            "task": "出发前复查天气，必要时带伞",
+            "due": "待确定出发日期",
+            "status": "待办"
+          },
+          {
+            "task": "检查身份证及票证",
+            "due": "出发前",
+            "status": "待办"
+          }
+        ],
+        "trace": [
+          {
+            "step": "需求提取",
+            "detail": "演示模式：使用本地需求提取"
+          },
+          {
+            "step": "约束记忆",
+            "detail": "成都，3天，2人，预算¥3000，老人1人"
+          },
+          {
+            "step": "天气工具",
+            "detail": "disabled：演示设置已关闭实时天气；未生成天气预报。"
+          },
+          {
+            "step": "数据查询",
+            "detail": "加载成都景点、酒店、餐饮及市内交通样例"
+          },
+          {
+            "step": "约束检查",
+            "detail": "估算总额¥2830；预算¥3000；雨天替换2项"
+          },
+          {
+            "step": "预算状态",
+            "detail": "estimated_within_budget"
+          },
+          {
+            "step": "结果生成",
+            "detail": "输出行程、预算、提醒清单与调整原因"
+          }
+        ],
+        "coverage": "成都样例数据：景点和费用均为演示估算",
+        "answer": "已为2人生成成都3天行程；估算¥2830，预算¥3000。符合预算。",
+        "budget_status": "estimated_within_budget",
+        "extraction_status": "演示模式：使用本地需求提取",
+        "schema_version": "1.0"
+      }
+    },
+    {
+      "input": "预算降到2500元",
+      "elapsed_seconds": 0.001199,
+      "response": {
+        "request": {
+          "city": "成都",
+          "start_date": "",
+          "days": 3,
+          "budget": 2500,
+          "adults": 1,
+          "elderly": 1,
+          "children": 0,
+          "pace": "舒缓",
+          "rain_days": [
+            2
+          ],
+          "preferences": [],
+          "origin": "",
+          "assumed_fields": [
+            "adults",
+            "children",
+            "pace"
+          ]
+        },
+        "weather": {
+          "status": "disabled",
+          "summary": "演示设置已关闭实时天气；未生成天气预报。",
+          "daily": [],
+          "source": "none"
+        },
+        "itinerary": [
+          {
+            "day": 1,
+            "date": "",
+            "rainy": false,
+            "rain_source": "",
+            "activities": [
+              {
+                "id": "wuhou",
+                "name": "武侯祠",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 50,
+                "area": "武侯祠片区",
+                "duration_hours": 2
+              },
+              {
+                "id": "jinli",
+                "name": "锦里步行街",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "武侯祠片区",
+                "duration_hours": 1.5
+              }
+            ],
+            "note": "每天安排不超过两个主要地点，保留午间休息。"
+          },
+          {
+            "day": 2,
+            "date": "",
+            "rainy": true,
+            "rain_source": "演示模拟",
+            "activities": [
+              {
+                "id": "jinsha",
+                "name": "金沙遗址博物馆",
+                "indoor": true,
+                "elderly_friendly": true,
+                "price_per_person": 70,
+                "area": "青羊区",
+                "duration_hours": 2
+              },
+              {
+                "id": "sichuanmuseum",
+                "name": "四川博物院",
+                "indoor": true,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "青羊区",
+                "duration_hours": 2
+              }
+            ],
+            "note": "每天安排不超过两个主要地点，保留午间休息。"
+          },
+          {
+            "day": 3,
+            "date": "",
+            "rainy": false,
+            "rain_source": "",
+            "activities": [
+              {
+                "id": "science",
+                "name": "四川科技馆",
+                "indoor": true,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "市中心",
+                "duration_hours": 2
+              },
+              {
+                "id": "peoplespark",
+                "name": "人民公园",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "青羊区",
+                "duration_hours": 1.5
+              }
+            ],
+            "note": "每天安排不超过两个主要地点，保留午间休息。"
+          }
+        ],
+        "budget_items": [
+          {
+            "category": "住宿",
+            "amount": 720,
+            "detail": "经济型酒店方案 × 2晚（估算）"
+          },
+          {
+            "category": "餐饮",
+            "amount": 600,
+            "detail": "2人 × 3天（估算）"
+          },
+          {
+            "category": "市内交通",
+            "amount": 330,
+            "detail": "打车/公共交通组合（估算）"
+          },
+          {
+            "category": "景点门票",
+            "amount": 240,
+            "detail": "按样例单价估算，实际价格需核对"
+          },
+          {
+            "category": "机动费用",
+            "amount": 180,
+            "detail": "临时支出预留"
+          }
+        ],
+        "total_cost": 2070,
+        "within_budget": true,
+        "changes": [
+          "第2天：将杜甫草堂替换为金沙遗址博物馆（雨天/行动强度约束）。",
+          "第2天：将宽窄巷子替换为四川博物院（雨天/行动强度约束）。",
+          "预算约束：住宿改为经济型酒店方案，并降低餐饮与市内交通估算。"
+        ],
+        "warnings": [
+          "景点名称和价格仅用于课程演示；开放时间、门票及预约要求须出发前核对。",
+          "未指定出发地时，预算不含往返成都的大交通。",
+          "未提供准确出发日期；无法查询逐日天气，也无法计算提醒日期。",
+          "演示设置已关闭实时天气；未生成天气预报。",
+          "雨天条件由用户指定，仅用于情境演示；不代表实时天气。",
+          "以下字段仍使用演示默认值，未经用户确认：成人数、儿童数、节奏；请确认同行人数和预算范围。"
+        ],
+        "booking_tasks": [
+          {
+            "task": "核对并预订住宿",
+            "due": "待确定出发日期",
+            "status": "待办"
+          },
+          {
+            "task": "核对往返交通和证件",
+            "due": "待确定出发日期",
+            "status": "待办"
+          },
+          {
+            "task": "出发前复查天气，必要时带伞",
+            "due": "待确定出发日期",
+            "status": "待办"
+          },
+          {
+            "task": "检查身份证及票证",
+            "due": "出发前",
+            "status": "待办"
+          }
+        ],
+        "trace": [
+          {
+            "step": "需求提取",
+            "detail": "演示模式：使用本地需求提取"
+          },
+          {
+            "step": "约束记忆",
+            "detail": "成都，3天，2人，预算¥2500，老人1人"
+          },
+          {
+            "step": "天气工具",
+            "detail": "disabled：演示设置已关闭实时天气；未生成天气预报。"
+          },
+          {
+            "step": "数据查询",
+            "detail": "加载成都景点、酒店、餐饮及市内交通样例"
+          },
+          {
+            "step": "约束检查",
+            "detail": "估算总额¥2070；预算¥2500；雨天替换2项"
+          },
+          {
+            "step": "预算状态",
+            "detail": "estimated_within_budget"
+          },
+          {
+            "step": "结果生成",
+            "detail": "输出行程、预算、提醒清单与调整原因"
+          }
+        ],
+        "coverage": "成都样例数据：景点和费用均为演示估算",
+        "answer": "已为2人生成成都3天行程；估算¥2070，预算¥2500。符合预算。",
+        "budget_status": "estimated_within_budget",
+        "extraction_status": "演示模式：使用本地需求提取",
+        "schema_version": "1.0"
+      }
+    },
+    {
+      "input": "尽量少走路",
+      "elapsed_seconds": 0.000833,
+      "response": {
+        "request": {
+          "city": "成都",
+          "start_date": "",
+          "days": 3,
+          "budget": 2500,
+          "adults": 1,
+          "elderly": 1,
+          "children": 0,
+          "pace": "舒缓",
+          "rain_days": [
+            2
+          ],
+          "preferences": [
+            "少走路"
+          ],
+          "origin": "",
+          "assumed_fields": [
+            "adults",
+            "children"
+          ]
+        },
+        "weather": {
+          "status": "disabled",
+          "summary": "演示设置已关闭实时天气；未生成天气预报。",
+          "daily": [],
+          "source": "none"
+        },
+        "itinerary": [
+          {
+            "day": 1,
+            "date": "",
+            "rainy": false,
+            "rain_source": "",
+            "activities": [
+              {
+                "id": "wuhou",
+                "name": "武侯祠",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 50,
+                "area": "武侯祠片区",
+                "duration_hours": 2
+              },
+              {
+                "id": "jinli",
+                "name": "锦里步行街",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "武侯祠片区",
+                "duration_hours": 1.5
+              }
+            ],
+            "note": "每天安排不超过两个主要地点，保留午间休息。"
+          },
+          {
+            "day": 2,
+            "date": "",
+            "rainy": true,
+            "rain_source": "演示模拟",
+            "activities": [
+              {
+                "id": "jinsha",
+                "name": "金沙遗址博物馆",
+                "indoor": true,
+                "elderly_friendly": true,
+                "price_per_person": 70,
+                "area": "青羊区",
+                "duration_hours": 2
+              },
+              {
+                "id": "sichuanmuseum",
+                "name": "四川博物院",
+                "indoor": true,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "青羊区",
+                "duration_hours": 2
+              }
+            ],
+            "note": "每天安排不超过两个主要地点，保留午间休息。"
+          },
+          {
+            "day": 3,
+            "date": "",
+            "rainy": false,
+            "rain_source": "",
+            "activities": [
+              {
+                "id": "science",
+                "name": "四川科技馆",
+                "indoor": true,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "市中心",
+                "duration_hours": 2
+              },
+              {
+                "id": "peoplespark",
+                "name": "人民公园",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "青羊区",
+                "duration_hours": 1.5
+              }
+            ],
+            "note": "每天安排不超过两个主要地点，保留午间休息。"
+          }
+        ],
+        "budget_items": [
+          {
+            "category": "住宿",
+            "amount": 720,
+            "detail": "经济型酒店方案 × 2晚（估算）"
+          },
+          {
+            "category": "餐饮",
+            "amount": 600,
+            "detail": "2人 × 3天（估算）"
+          },
+          {
+            "category": "市内交通",
+            "amount": 330,
+            "detail": "打车/公共交通组合（估算）"
+          },
+          {
+            "category": "景点门票",
+            "amount": 240,
+            "detail": "按样例单价估算，实际价格需核对"
+          },
+          {
+            "category": "机动费用",
+            "amount": 180,
+            "detail": "临时支出预留"
+          }
+        ],
+        "total_cost": 2070,
+        "within_budget": true,
+        "changes": [
+          "第2天：将杜甫草堂替换为金沙遗址博物馆（雨天/行动强度约束）。",
+          "第2天：将宽窄巷子替换为四川博物院（雨天/行动强度约束）。",
+          "预算约束：住宿改为经济型酒店方案，并降低餐饮与市内交通估算。"
+        ],
+        "warnings": [
+          "景点名称和价格仅用于课程演示；开放时间、门票及预约要求须出发前核对。",
+          "未指定出发地时，预算不含往返成都的大交通。",
+          "未提供准确出发日期；无法查询逐日天气，也无法计算提醒日期。",
+          "演示设置已关闭实时天气；未生成天气预报。",
+          "雨天条件由用户指定，仅用于情境演示；不代表实时天气。",
+          "以下字段仍使用演示默认值，未经用户确认：成人数、儿童数；请确认同行人数和预算范围。"
+        ],
+        "booking_tasks": [
+          {
+            "task": "核对并预订住宿",
+            "due": "待确定出发日期",
+            "status": "待办"
+          },
+          {
+            "task": "核对往返交通和证件",
+            "due": "待确定出发日期",
+            "status": "待办"
+          },
+          {
+            "task": "出发前复查天气，必要时带伞",
+            "due": "待确定出发日期",
+            "status": "待办"
+          },
+          {
+            "task": "检查身份证及票证",
+            "due": "出发前",
+            "status": "待办"
+          }
+        ],
+        "trace": [
+          {
+            "step": "需求提取",
+            "detail": "演示模式：使用本地需求提取"
+          },
+          {
+            "step": "约束记忆",
+            "detail": "成都，3天，2人，预算¥2500，老人1人"
+          },
+          {
+            "step": "天气工具",
+            "detail": "disabled：演示设置已关闭实时天气；未生成天气预报。"
+          },
+          {
+            "step": "数据查询",
+            "detail": "加载成都景点、酒店、餐饮及市内交通样例"
+          },
+          {
+            "step": "约束检查",
+            "detail": "估算总额¥2070；预算¥2500；雨天替换2项"
+          },
+          {
+            "step": "偏好交接",
+            "detail": "少走路偏好已传入规划规则；实际调整与未满足约束见调整说明和警告。"
+          },
+          {
+            "step": "预算状态",
+            "detail": "estimated_within_budget"
+          },
+          {
+            "step": "结果生成",
+            "detail": "输出行程、预算、提醒清单与调整原因"
+          }
+        ],
+        "coverage": "成都样例数据：景点和费用均为演示估算",
+        "answer": "已为2人生成成都3天行程；估算¥2070，预算¥2500。符合预算。",
+        "budget_status": "estimated_within_budget",
+        "extraction_status": "演示模式：使用本地需求提取",
+        "schema_version": "1.0"
+      }
+    }
+  ],
+  "scenarios": {
+    "non_chengdu": {
+      "input": "去杭州三天，预算3000元",
+      "elapsed_seconds": 0.000473,
+      "response": {
+        "request": {
+          "city": "杭州",
+          "start_date": "",
+          "days": 3,
+          "budget": 3000,
+          "adults": 1,
+          "elderly": 1,
+          "children": 0,
+          "pace": "舒缓",
+          "rain_days": [],
+          "preferences": [],
+          "origin": "",
+          "assumed_fields": [
+            "adults",
+            "elderly",
+            "children",
+            "pace"
+          ]
+        },
+        "weather": {
+          "status": "disabled",
+          "summary": "演示设置已关闭实时天气；未生成天气预报。",
+          "daily": [],
+          "source": "none"
+        },
+        "itinerary": [
+          {
+            "day": 1,
+            "date": "",
+            "rainy": false,
+            "rain_source": "",
+            "activities": [
+              {
+                "name": "当地博物馆或文化场馆（地点待核实）",
+                "indoor": true,
+                "price_per_person": null
+              },
+              {
+                "name": "室内休闲活动（地点待核实）",
+                "indoor": true,
+                "price_per_person": null
+              }
+            ],
+            "note": "只提供方向性建议；开放时间、路线、价格和预约均待核实。"
+          },
+          {
+            "day": 2,
+            "date": "",
+            "rainy": false,
+            "rain_source": "",
+            "activities": [
+              {
+                "name": "当地博物馆或文化场馆（地点待核实）",
+                "indoor": true,
+                "price_per_person": null
+              },
+              {
+                "name": "室内休闲活动（地点待核实）",
+                "indoor": true,
+                "price_per_person": null
+              }
+            ],
+            "note": "只提供方向性建议；开放时间、路线、价格和预约均待核实。"
+          },
+          {
+            "day": 3,
+            "date": "",
+            "rainy": false,
+            "rain_source": "",
+            "activities": [
+              {
+                "name": "当地博物馆或文化场馆（地点待核实）",
+                "indoor": true,
+                "price_per_person": null
+              },
+              {
+                "name": "室内休闲活动（地点待核实）",
+                "indoor": true,
+                "price_per_person": null
+              }
+            ],
+            "note": "只提供方向性建议；开放时间、路线、价格和预约均待核实。"
+          }
+        ],
+        "budget_items": [],
+        "total_cost": 0,
+        "within_budget": false,
+        "changes": [],
+        "warnings": [
+          "目的地不在已核实样例库中，无法计算可靠预算或推荐具体预订。",
+          "演示设置已关闭实时天气；未生成天气预报。",
+          "以下字段仍使用演示默认值，未经用户确认：成人数、老人数、儿童数、节奏；请确认同行人数和预算范围。"
+        ],
+        "booking_tasks": [
+          {
+            "task": "核对并预订住宿",
+            "due": "待确定出发日期",
+            "status": "待办"
+          },
+          {
+            "task": "核对往返交通和证件",
+            "due": "待确定出发日期",
+            "status": "待办"
+          },
+          {
+            "task": "出发前复查天气，必要时带伞",
+            "due": "待确定出发日期",
+            "status": "待办"
+          },
+          {
+            "task": "检查身份证及票证",
+            "due": "出发前",
+            "status": "待办"
+          }
+        ],
+        "trace": [
+          {
+            "step": "需求提取",
+            "detail": "演示模式：使用本地需求提取"
+          },
+          {
+            "step": "约束记忆",
+            "detail": "杭州，3天，2人，预算¥3000，老人1人"
+          },
+          {
+            "step": "天气工具",
+            "detail": "disabled：演示设置已关闭实时天气；未生成天气预报。"
+          },
+          {
+            "step": "数据覆盖",
+            "detail": "非成都城市：景点、酒店和交通建议均未核实"
+          },
+          {
+            "step": "预算检查",
+            "detail": "缺少可靠报价，预算状态为未核实"
+          },
+          {
+            "step": "预算状态",
+            "detail": "unverified"
+          },
+          {
+            "step": "结果生成",
+            "detail": "输出行程、预算、提醒清单与调整原因"
+          }
+        ],
+        "coverage": "非成都城市：景点、酒店和交通建议均未核实",
+        "answer": "可以为杭州提供初步行程方向；当地景点、报价和交通班次均需进一步核对。",
+        "budget_status": "unverified",
+        "extraction_status": "演示模式：使用本地需求提取",
+        "schema_version": "1.0"
+      }
+    },
+    "weather_failure": {
+      "input": "去成都三天，第二天下雨",
+      "elapsed_seconds": 0.001266,
+      "response": {
+        "request": {
+          "city": "成都",
+          "start_date": "",
+          "days": 3,
+          "budget": 3000,
+          "adults": 1,
+          "elderly": 1,
+          "children": 0,
+          "pace": "舒缓",
+          "rain_days": [
+            2
+          ],
+          "preferences": [],
+          "origin": "",
+          "assumed_fields": [
+            "budget",
+            "adults",
+            "elderly",
+            "children",
+            "pace"
+          ]
+        },
+        "weather": {
+          "status": "error",
+          "summary": "天气查询失败（TimeoutError）；未生成预报，请稍后查询，仍可使用用户指定的模拟雨天。",
+          "daily": [],
+          "source": "none"
+        },
+        "itinerary": [
+          {
+            "day": 1,
+            "date": "",
+            "rainy": false,
+            "rain_source": "",
+            "activities": [
+              {
+                "id": "wuhou",
+                "name": "武侯祠",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 50,
+                "area": "武侯祠片区",
+                "duration_hours": 2
+              },
+              {
+                "id": "jinli",
+                "name": "锦里步行街",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "武侯祠片区",
+                "duration_hours": 1.5
+              }
+            ],
+            "note": "每天安排不超过两个主要地点，保留午间休息。"
+          },
+          {
+            "day": 2,
+            "date": "",
+            "rainy": true,
+            "rain_source": "演示模拟",
+            "activities": [
+              {
+                "id": "jinsha",
+                "name": "金沙遗址博物馆",
+                "indoor": true,
+                "elderly_friendly": true,
+                "price_per_person": 70,
+                "area": "青羊区",
+                "duration_hours": 2
+              },
+              {
+                "id": "sichuanmuseum",
+                "name": "四川博物院",
+                "indoor": true,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "青羊区",
+                "duration_hours": 2
+              }
+            ],
+            "note": "每天安排不超过两个主要地点，保留午间休息。"
+          },
+          {
+            "day": 3,
+            "date": "",
+            "rainy": false,
+            "rain_source": "",
+            "activities": [
+              {
+                "id": "science",
+                "name": "四川科技馆",
+                "indoor": true,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "市中心",
+                "duration_hours": 2
+              },
+              {
+                "id": "peoplespark",
+                "name": "人民公园",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "青羊区",
+                "duration_hours": 1.5
+              }
+            ],
+            "note": "每天安排不超过两个主要地点，保留午间休息。"
+          }
+        ],
+        "budget_items": [
+          {
+            "category": "住宿",
+            "amount": 1240,
+            "detail": "舒适型酒店方案 × 2晚（估算）"
+          },
+          {
+            "category": "餐饮",
+            "amount": 720,
+            "detail": "2人 × 3天（估算）"
+          },
+          {
+            "category": "市内交通",
+            "amount": 450,
+            "detail": "打车/公共交通组合（估算）"
+          },
+          {
+            "category": "景点门票",
+            "amount": 240,
+            "detail": "按样例单价估算，实际价格需核对"
+          },
+          {
+            "category": "机动费用",
+            "amount": 180,
+            "detail": "临时支出预留"
+          }
+        ],
+        "total_cost": 2830,
+        "within_budget": true,
+        "changes": [
+          "第2天：将杜甫草堂替换为金沙遗址博物馆（雨天/行动强度约束）。",
+          "第2天：将宽窄巷子替换为四川博物院（雨天/行动强度约束）。"
+        ],
+        "warnings": [
+          "景点名称和价格仅用于课程演示；开放时间、门票及预约要求须出发前核对。",
+          "未指定出发地时，预算不含往返成都的大交通。",
+          "未提供准确出发日期；无法查询逐日天气，也无法计算提醒日期。",
+          "天气查询失败（TimeoutError）；未生成预报，请稍后查询，仍可使用用户指定的模拟雨天。",
+          "雨天条件由用户指定，仅用于情境演示；不代表实时天气。",
+          "以下字段仍使用演示默认值，未经用户确认：预算、成人数、老人数、儿童数、节奏；请确认同行人数和预算范围。"
+        ],
+        "booking_tasks": [
+          {
+            "task": "核对并预订住宿",
+            "due": "待确定出发日期",
+            "status": "待办"
+          },
+          {
+            "task": "核对往返交通和证件",
+            "due": "待确定出发日期",
+            "status": "待办"
+          },
+          {
+            "task": "出发前复查天气，必要时带伞",
+            "due": "待确定出发日期",
+            "status": "待办"
+          },
+          {
+            "task": "检查身份证及票证",
+            "due": "出发前",
+            "status": "待办"
+          }
+        ],
+        "trace": [
+          {
+            "step": "需求提取",
+            "detail": "演示模式：使用本地需求提取"
+          },
+          {
+            "step": "约束记忆",
+            "detail": "成都，3天，2人，预算¥3000，老人1人"
+          },
+          {
+            "step": "天气工具",
+            "detail": "error：天气查询失败（TimeoutError）；未生成预报，请稍后查询，仍可使用用户指定的模拟雨天。"
+          },
+          {
+            "step": "数据查询",
+            "detail": "加载成都景点、酒店、餐饮及市内交通样例"
+          },
+          {
+            "step": "约束检查",
+            "detail": "估算总额¥2830；预算¥3000；雨天替换2项"
+          },
+          {
+            "step": "预算状态",
+            "detail": "estimated_within_budget"
+          },
+          {
+            "step": "结果生成",
+            "detail": "输出行程、预算、提醒清单与调整原因"
+          }
+        ],
+        "coverage": "成都样例数据：景点和费用均为演示估算",
+        "answer": "已为2人生成成都3天行程；估算¥2830，预算¥3000。符合预算。",
+        "budget_status": "estimated_within_budget",
+        "extraction_status": "演示模式：使用本地需求提取",
+        "schema_version": "1.0"
+      }
+    },
+    "invalid_date": {
+      "input": "出发日期改为2026-02-30",
+      "elapsed_seconds": 0.000681,
+      "response": {
+        "request": {
+          "city": "成都",
+          "start_date": "",
+          "days": 3,
+          "budget": 3000,
+          "adults": 1,
+          "elderly": 1,
+          "children": 0,
+          "pace": "舒缓",
+          "rain_days": [],
+          "preferences": [],
+          "origin": "",
+          "assumed_fields": [
+            "city",
+            "days",
+            "budget",
+            "adults",
+            "elderly",
+            "children",
+            "pace"
+          ]
+        },
+        "weather": {
+          "status": "disabled",
+          "summary": "演示设置已关闭实时天气；未生成天气预报。",
+          "daily": [],
+          "source": "none"
+        },
+        "itinerary": [
+          {
+            "day": 1,
+            "date": "",
+            "rainy": false,
+            "rain_source": "",
+            "activities": [
+              {
+                "id": "wuhou",
+                "name": "武侯祠",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 50,
+                "area": "武侯祠片区",
+                "duration_hours": 2
+              },
+              {
+                "id": "jinli",
+                "name": "锦里步行街",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "武侯祠片区",
+                "duration_hours": 1.5
+              }
+            ],
+            "note": "每天安排不超过两个主要地点，保留午间休息。"
+          },
+          {
+            "day": 2,
+            "date": "",
+            "rainy": false,
+            "rain_source": "",
+            "activities": [
+              {
+                "id": "dufu",
+                "name": "杜甫草堂",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 50,
+                "area": "青羊区",
+                "duration_hours": 2
+              },
+              {
+                "id": "kuanzhai",
+                "name": "宽窄巷子",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "青羊区",
+                "duration_hours": 1.5
+              }
+            ],
+            "note": "每天安排不超过两个主要地点，保留午间休息。"
+          },
+          {
+            "day": 3,
+            "date": "",
+            "rainy": false,
+            "rain_source": "",
+            "activities": [
+              {
+                "id": "science",
+                "name": "四川科技馆",
+                "indoor": true,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "市中心",
+                "duration_hours": 2
+              },
+              {
+                "id": "peoplespark",
+                "name": "人民公园",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "青羊区",
+                "duration_hours": 1.5
+              }
+            ],
+            "note": "每天安排不超过两个主要地点，保留午间休息。"
+          }
+        ],
+        "budget_items": [
+          {
+            "category": "住宿",
+            "amount": 1240,
+            "detail": "舒适型酒店方案 × 2晚（估算）"
+          },
+          {
+            "category": "餐饮",
+            "amount": 720,
+            "detail": "2人 × 3天（估算）"
+          },
+          {
+            "category": "市内交通",
+            "amount": 450,
+            "detail": "打车/公共交通组合（估算）"
+          },
+          {
+            "category": "景点门票",
+            "amount": 200,
+            "detail": "按样例单价估算，实际价格需核对"
+          },
+          {
+            "category": "机动费用",
+            "amount": 180,
+            "detail": "临时支出预留"
+          }
+        ],
+        "total_cost": 2790,
+        "within_budget": true,
+        "changes": [],
+        "warnings": [
+          "景点名称和价格仅用于课程演示；开放时间、门票及预约要求须出发前核对。",
+          "未指定出发地时，预算不含往返成都的大交通。",
+          "未提供准确出发日期；无法查询逐日天气，也无法计算提醒日期。",
+          "演示设置已关闭实时天气；未生成天气预报。",
+          "以下字段仍使用演示默认值，未经用户确认：城市、天数、预算、成人数、老人数、儿童数、节奏；请确认同行人数和预算范围。",
+          "演示模式：使用本地需求提取；start_date 输入无效，已保留原值；请检查日期、类型或允许范围。"
+        ],
+        "booking_tasks": [
+          {
+            "task": "核对并预订住宿",
+            "due": "待确定出发日期",
+            "status": "待办"
+          },
+          {
+            "task": "核对往返交通和证件",
+            "due": "待确定出发日期",
+            "status": "待办"
+          },
+          {
+            "task": "出发前复查天气，必要时带伞",
+            "due": "待确定出发日期",
+            "status": "待办"
+          },
+          {
+            "task": "检查身份证及票证",
+            "due": "出发前",
+            "status": "待办"
+          }
+        ],
+        "trace": [
+          {
+            "step": "需求提取",
+            "detail": "演示模式：使用本地需求提取；start_date 输入无效，已保留原值；请检查日期、类型或允许范围。"
+          },
+          {
+            "step": "约束记忆",
+            "detail": "成都，3天，2人，预算¥3000，老人1人"
+          },
+          {
+            "step": "天气工具",
+            "detail": "disabled：演示设置已关闭实时天气；未生成天气预报。"
+          },
+          {
+            "step": "数据查询",
+            "detail": "加载成都景点、酒店、餐饮及市内交通样例"
+          },
+          {
+            "step": "约束检查",
+            "detail": "估算总额¥2790；预算¥3000；雨天替换0项"
+          },
+          {
+            "step": "预算状态",
+            "detail": "estimated_within_budget"
+          },
+          {
+            "step": "结果生成",
+            "detail": "输出行程、预算、提醒清单与调整原因"
+          }
+        ],
+        "coverage": "成都样例数据：景点和费用均为演示估算",
+        "answer": "已为2人生成成都3天行程；估算¥2790，预算¥3000。符合预算。",
+        "budget_status": "estimated_within_budget",
+        "extraction_status": "演示模式：使用本地需求提取；start_date 输入无效，已保留原值；请检查日期、类型或允许范围。",
+        "schema_version": "1.0"
+      }
+    },
+    "zero_budget": {
+      "input": "去成都三天，预算0元",
+      "elapsed_seconds": 0.000926,
+      "response": {
+        "request": {
+          "city": "成都",
+          "start_date": "",
+          "days": 3,
+          "budget": 0,
+          "adults": 1,
+          "elderly": 1,
+          "children": 0,
+          "pace": "舒缓",
+          "rain_days": [],
+          "preferences": [],
+          "origin": "",
+          "assumed_fields": [
+            "adults",
+            "elderly",
+            "children",
+            "pace"
+          ]
+        },
+        "weather": {
+          "status": "disabled",
+          "summary": "演示设置已关闭实时天气；未生成天气预报。",
+          "daily": [],
+          "source": "none"
+        },
+        "itinerary": [
+          {
+            "day": 1,
+            "date": "",
+            "rainy": false,
+            "rain_source": "",
+            "activities": [
+              {
+                "id": "wuhou",
+                "name": "武侯祠",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 50,
+                "area": "武侯祠片区",
+                "duration_hours": 2
+              },
+              {
+                "id": "jinli",
+                "name": "锦里步行街",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "武侯祠片区",
+                "duration_hours": 1.5
+              }
+            ],
+            "note": "每天安排不超过两个主要地点，保留午间休息。"
+          },
+          {
+            "day": 2,
+            "date": "",
+            "rainy": false,
+            "rain_source": "",
+            "activities": [
+              {
+                "id": "dufu",
+                "name": "杜甫草堂",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 50,
+                "area": "青羊区",
+                "duration_hours": 2
+              },
+              {
+                "id": "kuanzhai",
+                "name": "宽窄巷子",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "青羊区",
+                "duration_hours": 1.5
+              }
+            ],
+            "note": "每天安排不超过两个主要地点，保留午间休息。"
+          },
+          {
+            "day": 3,
+            "date": "",
+            "rainy": false,
+            "rain_source": "",
+            "activities": [
+              {
+                "id": "science",
+                "name": "四川科技馆",
+                "indoor": true,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "市中心",
+                "duration_hours": 2
+              },
+              {
+                "id": "peoplespark",
+                "name": "人民公园",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "青羊区",
+                "duration_hours": 1.5
+              }
+            ],
+            "note": "每天安排不超过两个主要地点，保留午间休息。"
+          }
+        ],
+        "budget_items": [
+          {
+            "category": "住宿",
+            "amount": 720,
+            "detail": "经济型酒店方案 × 2晚（估算）"
+          },
+          {
+            "category": "餐饮",
+            "amount": 600,
+            "detail": "2人 × 3天（估算）"
+          },
+          {
+            "category": "市内交通",
+            "amount": 330,
+            "detail": "打车/公共交通组合（估算）"
+          },
+          {
+            "category": "景点门票",
+            "amount": 200,
+            "detail": "按样例单价估算，实际价格需核对"
+          },
+          {
+            "category": "机动费用",
+            "amount": 180,
+            "detail": "临时支出预留"
+          }
+        ],
+        "total_cost": 2030,
+        "within_budget": false,
+        "changes": [
+          "预算约束：住宿改为经济型酒店方案，并降低餐饮与市内交通估算。"
+        ],
+        "warnings": [
+          "景点名称和价格仅用于课程演示；开放时间、门票及预约要求须出发前核对。",
+          "未指定出发地时，预算不含往返成都的大交通。",
+          "估算费用 ¥2030 超过预算 ¥0；请提高预算、缩短行程或进一步减少项目。",
+          "未提供准确出发日期；无法查询逐日天气，也无法计算提醒日期。",
+          "演示设置已关闭实时天气；未生成天气预报。",
+          "以下字段仍使用演示默认值，未经用户确认：成人数、老人数、儿童数、节奏；请确认同行人数和预算范围。"
+        ],
+        "booking_tasks": [
+          {
+            "task": "核对并预订住宿",
+            "due": "待确定出发日期",
+            "status": "待办"
+          },
+          {
+            "task": "核对往返交通和证件",
+            "due": "待确定出发日期",
+            "status": "待办"
+          },
+          {
+            "task": "出发前复查天气，必要时带伞",
+            "due": "待确定出发日期",
+            "status": "待办"
+          },
+          {
+            "task": "检查身份证及票证",
+            "due": "出发前",
+            "status": "待办"
+          }
+        ],
+        "trace": [
+          {
+            "step": "需求提取",
+            "detail": "演示模式：使用本地需求提取"
+          },
+          {
+            "step": "约束记忆",
+            "detail": "成都，3天，2人，预算¥0，老人1人"
+          },
+          {
+            "step": "天气工具",
+            "detail": "disabled：演示设置已关闭实时天气；未生成天气预报。"
+          },
+          {
+            "step": "数据查询",
+            "detail": "加载成都景点、酒店、餐饮及市内交通样例"
+          },
+          {
+            "step": "约束检查",
+            "detail": "估算总额¥2030；预算¥0；雨天替换0项"
+          },
+          {
+            "step": "预算状态",
+            "detail": "estimated_over_budget"
+          },
+          {
+            "step": "结果生成",
+            "detail": "输出行程、预算、提醒清单与调整原因"
+          }
+        ],
+        "coverage": "成都样例数据：景点和费用均为演示估算",
+        "answer": "已为2人生成成都3天行程；估算¥2030，预算¥0。当前仍超预算，请调整天数或预算。",
+        "budget_status": "estimated_over_budget",
+        "extraction_status": "演示模式：使用本地需求提取",
+        "schema_version": "1.0"
+      }
+    },
+    "seven_days": {
+      "input": "去成都七天",
+      "elapsed_seconds": 0.000708,
+      "response": {
+        "request": {
+          "city": "成都",
+          "start_date": "",
+          "days": 7,
+          "budget": 3000,
+          "adults": 1,
+          "elderly": 1,
+          "children": 0,
+          "pace": "舒缓",
+          "rain_days": [],
+          "preferences": [],
+          "origin": "",
+          "assumed_fields": [
+            "budget",
+            "adults",
+            "elderly",
+            "children",
+            "pace"
+          ]
+        },
+        "weather": {
+          "status": "disabled",
+          "summary": "演示设置已关闭实时天气；未生成天气预报。",
+          "daily": [],
+          "source": "none"
+        },
+        "itinerary": [
+          {
+            "day": 1,
+            "date": "",
+            "rainy": false,
+            "rain_source": "",
+            "activities": [
+              {
+                "id": "wuhou",
+                "name": "武侯祠",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 50,
+                "area": "武侯祠片区",
+                "duration_hours": 2
+              },
+              {
+                "id": "jinli",
+                "name": "锦里步行街",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "武侯祠片区",
+                "duration_hours": 1.5
+              }
+            ],
+            "note": "每天安排不超过两个主要地点，保留午间休息。"
+          },
+          {
+            "day": 2,
+            "date": "",
+            "rainy": false,
+            "rain_source": "",
+            "activities": [
+              {
+                "id": "dufu",
+                "name": "杜甫草堂",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 50,
+                "area": "青羊区",
+                "duration_hours": 2
+              },
+              {
+                "id": "kuanzhai",
+                "name": "宽窄巷子",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "青羊区",
+                "duration_hours": 1.5
+              }
+            ],
+            "note": "每天安排不超过两个主要地点，保留午间休息。"
+          },
+          {
+            "day": 3,
+            "date": "",
+            "rainy": false,
+            "rain_source": "",
+            "activities": [
+              {
+                "id": "science",
+                "name": "四川科技馆",
+                "indoor": true,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "市中心",
+                "duration_hours": 2
+              },
+              {
+                "id": "peoplespark",
+                "name": "人民公园",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "青羊区",
+                "duration_hours": 1.5
+              }
+            ],
+            "note": "每天安排不超过两个主要地点，保留午间休息。"
+          },
+          {
+            "day": 4,
+            "date": "",
+            "rainy": false,
+            "rain_source": "",
+            "activities": [
+              {
+                "id": "jinsha",
+                "name": "金沙遗址博物馆",
+                "indoor": true,
+                "elderly_friendly": true,
+                "price_per_person": 70,
+                "area": "青羊区",
+                "duration_hours": 2
+              },
+              {
+                "id": "sichuanmuseum",
+                "name": "四川博物院",
+                "indoor": true,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "青羊区",
+                "duration_hours": 2
+              }
+            ],
+            "note": "每天安排不超过两个主要地点，保留午间休息。"
+          },
+          {
+            "day": 5,
+            "date": "",
+            "rainy": false,
+            "rain_source": "",
+            "activities": [
+              {
+                "id": "wuhou",
+                "name": "武侯祠",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 50,
+                "area": "武侯祠片区",
+                "duration_hours": 2
+              },
+              {
+                "id": "peoplespark",
+                "name": "人民公园",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "青羊区",
+                "duration_hours": 1.5
+              }
+            ],
+            "note": "每天安排不超过两个主要地点，保留午间休息。"
+          },
+          {
+            "day": 6,
+            "date": "",
+            "rainy": false,
+            "rain_source": "",
+            "activities": [
+              {
+                "id": "dufu",
+                "name": "杜甫草堂",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 50,
+                "area": "青羊区",
+                "duration_hours": 2
+              },
+              {
+                "id": "science",
+                "name": "四川科技馆",
+                "indoor": true,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "市中心",
+                "duration_hours": 2
+              }
+            ],
+            "note": "每天安排不超过两个主要地点，保留午间休息。"
+          },
+          {
+            "day": 7,
+            "date": "",
+            "rainy": false,
+            "rain_source": "",
+            "activities": [
+              {
+                "id": "sichuanmuseum",
+                "name": "四川博物院",
+                "indoor": true,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "青羊区",
+                "duration_hours": 2
+              },
+              {
+                "id": "jinli",
+                "name": "锦里步行街",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "武侯祠片区",
+                "duration_hours": 1.5
+              }
+            ],
+            "note": "每天安排不超过两个主要地点，保留午间休息。"
+          }
+        ],
+        "budget_items": [
+          {
+            "category": "住宿",
+            "amount": 3720,
+            "detail": "舒适型酒店方案 × 6晚（估算）"
+          },
+          {
+            "category": "餐饮",
+            "amount": 1680,
+            "detail": "2人 × 7天（估算）"
+          },
+          {
+            "category": "市内交通",
+            "amount": 1050,
+            "detail": "打车/公共交通组合（估算）"
+          },
+          {
+            "category": "景点门票",
+            "amount": 540,
+            "detail": "按样例单价估算，实际价格需核对"
+          },
+          {
+            "category": "机动费用",
+            "amount": 180,
+            "detail": "临时支出预留"
+          }
+        ],
+        "total_cost": 7170,
+        "within_budget": false,
+        "changes": [],
+        "warnings": [
+          "景点名称和价格仅用于课程演示；开放时间、门票及预约要求须出发前核对。",
+          "未指定出发地时，预算不含往返成都的大交通。",
+          "估算费用 ¥7170 超过预算 ¥3000；请提高预算、缩短行程或进一步减少项目。",
+          "未提供准确出发日期；无法查询逐日天气，也无法计算提醒日期。",
+          "演示设置已关闭实时天气；未生成天气预报。",
+          "以下字段仍使用演示默认值，未经用户确认：预算、成人数、老人数、儿童数、节奏；请确认同行人数和预算范围。"
+        ],
+        "booking_tasks": [
+          {
+            "task": "核对并预订住宿",
+            "due": "待确定出发日期",
+            "status": "待办"
+          },
+          {
+            "task": "核对往返交通和证件",
+            "due": "待确定出发日期",
+            "status": "待办"
+          },
+          {
+            "task": "出发前复查天气，必要时带伞",
+            "due": "待确定出发日期",
+            "status": "待办"
+          },
+          {
+            "task": "检查身份证及票证",
+            "due": "出发前",
+            "status": "待办"
+          }
+        ],
+        "trace": [
+          {
+            "step": "需求提取",
+            "detail": "演示模式：使用本地需求提取"
+          },
+          {
+            "step": "约束记忆",
+            "detail": "成都，7天，2人，预算¥3000，老人1人"
+          },
+          {
+            "step": "天气工具",
+            "detail": "disabled：演示设置已关闭实时天气；未生成天气预报。"
+          },
+          {
+            "step": "数据查询",
+            "detail": "加载成都景点、酒店、餐饮及市内交通样例"
+          },
+          {
+            "step": "约束检查",
+            "detail": "估算总额¥7170；预算¥3000；雨天替换0项"
+          },
+          {
+            "step": "预算状态",
+            "detail": "estimated_over_budget"
+          },
+          {
+            "step": "结果生成",
+            "detail": "输出行程、预算、提醒清单与调整原因"
+          }
+        ],
+        "coverage": "成都样例数据：景点和费用均为演示估算",
+        "answer": "已为2人生成成都7天行程；估算¥7170，预算¥3000。当前仍超预算，请调整天数或预算。",
+        "budget_status": "estimated_over_budget",
+        "extraction_status": "演示模式：使用本地需求提取",
+        "schema_version": "1.0"
+      }
+    },
+    "no_key": {
+      "input": "去成都三天，预算3000元，带一位老人",
+      "elapsed_seconds": 0.000699,
+      "response": {
+        "request": {
+          "city": "成都",
+          "start_date": "",
+          "days": 3,
+          "budget": 3000,
+          "adults": 1,
+          "elderly": 1,
+          "children": 0,
+          "pace": "舒缓",
+          "rain_days": [],
+          "preferences": [],
+          "origin": "",
+          "assumed_fields": [
+            "adults",
+            "children",
+            "pace"
+          ]
+        },
+        "weather": {
+          "status": "disabled",
+          "summary": "演示设置已关闭实时天气；未生成天气预报。",
+          "daily": [],
+          "source": "none"
+        },
+        "itinerary": [
+          {
+            "day": 1,
+            "date": "",
+            "rainy": false,
+            "rain_source": "",
+            "activities": [
+              {
+                "id": "wuhou",
+                "name": "武侯祠",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 50,
+                "area": "武侯祠片区",
+                "duration_hours": 2
+              },
+              {
+                "id": "jinli",
+                "name": "锦里步行街",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "武侯祠片区",
+                "duration_hours": 1.5
+              }
+            ],
+            "note": "每天安排不超过两个主要地点，保留午间休息。"
+          },
+          {
+            "day": 2,
+            "date": "",
+            "rainy": false,
+            "rain_source": "",
+            "activities": [
+              {
+                "id": "dufu",
+                "name": "杜甫草堂",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 50,
+                "area": "青羊区",
+                "duration_hours": 2
+              },
+              {
+                "id": "kuanzhai",
+                "name": "宽窄巷子",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "青羊区",
+                "duration_hours": 1.5
+              }
+            ],
+            "note": "每天安排不超过两个主要地点，保留午间休息。"
+          },
+          {
+            "day": 3,
+            "date": "",
+            "rainy": false,
+            "rain_source": "",
+            "activities": [
+              {
+                "id": "science",
+                "name": "四川科技馆",
+                "indoor": true,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "市中心",
+                "duration_hours": 2
+              },
+              {
+                "id": "peoplespark",
+                "name": "人民公园",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "青羊区",
+                "duration_hours": 1.5
+              }
+            ],
+            "note": "每天安排不超过两个主要地点，保留午间休息。"
+          }
+        ],
+        "budget_items": [
+          {
+            "category": "住宿",
+            "amount": 1240,
+            "detail": "舒适型酒店方案 × 2晚（估算）"
+          },
+          {
+            "category": "餐饮",
+            "amount": 720,
+            "detail": "2人 × 3天（估算）"
+          },
+          {
+            "category": "市内交通",
+            "amount": 450,
+            "detail": "打车/公共交通组合（估算）"
+          },
+          {
+            "category": "景点门票",
+            "amount": 200,
+            "detail": "按样例单价估算，实际价格需核对"
+          },
+          {
+            "category": "机动费用",
+            "amount": 180,
+            "detail": "临时支出预留"
+          }
+        ],
+        "total_cost": 2790,
+        "within_budget": true,
+        "changes": [],
+        "warnings": [
+          "景点名称和价格仅用于课程演示；开放时间、门票及预约要求须出发前核对。",
+          "未指定出发地时，预算不含往返成都的大交通。",
+          "未提供准确出发日期；无法查询逐日天气，也无法计算提醒日期。",
+          "演示设置已关闭实时天气；未生成天气预报。",
+          "以下字段仍使用演示默认值，未经用户确认：成人数、儿童数、节奏；请确认同行人数和预算范围。",
+          "未配置密钥：使用本地需求提取"
+        ],
+        "booking_tasks": [
+          {
+            "task": "核对并预订住宿",
+            "due": "待确定出发日期",
+            "status": "待办"
+          },
+          {
+            "task": "核对往返交通和证件",
+            "due": "待确定出发日期",
+            "status": "待办"
+          },
+          {
+            "task": "出发前复查天气，必要时带伞",
+            "due": "待确定出发日期",
+            "status": "待办"
+          },
+          {
+            "task": "检查身份证及票证",
+            "due": "出发前",
+            "status": "待办"
+          }
+        ],
+        "trace": [
+          {
+            "step": "需求提取",
+            "detail": "未配置密钥：使用本地需求提取"
+          },
+          {
+            "step": "约束记忆",
+            "detail": "成都，3天，2人，预算¥3000，老人1人"
+          },
+          {
+            "step": "天气工具",
+            "detail": "disabled：演示设置已关闭实时天气；未生成天气预报。"
+          },
+          {
+            "step": "数据查询",
+            "detail": "加载成都景点、酒店、餐饮及市内交通样例"
+          },
+          {
+            "step": "约束检查",
+            "detail": "估算总额¥2790；预算¥3000；雨天替换0项"
+          },
+          {
+            "step": "预算状态",
+            "detail": "estimated_within_budget"
+          },
+          {
+            "step": "结果生成",
+            "detail": "输出行程、预算、提醒清单与调整原因"
+          }
+        ],
+        "coverage": "成都样例数据：景点和费用均为演示估算",
+        "answer": "已为2人生成成都3天行程；估算¥2790，预算¥3000。符合预算。",
+        "budget_status": "estimated_within_budget",
+        "extraction_status": "未配置密钥：使用本地需求提取",
+        "schema_version": "1.0"
+      }
+    },
+    "model_timeout": {
+      "input": "预算降到2500元",
+      "elapsed_seconds": 0.000742,
+      "response": {
+        "request": {
+          "city": "成都",
+          "start_date": "",
+          "days": 3,
+          "budget": 2500,
+          "adults": 1,
+          "elderly": 1,
+          "children": 0,
+          "pace": "舒缓",
+          "rain_days": [
+            2
+          ],
+          "preferences": [
+            "少走路"
+          ],
+          "origin": "",
+          "assumed_fields": [
+            "adults",
+            "children"
+          ]
+        },
+        "weather": {
+          "status": "disabled",
+          "summary": "演示设置已关闭实时天气；未生成天气预报。",
+          "daily": [],
+          "source": "none"
+        },
+        "itinerary": [
+          {
+            "day": 1,
+            "date": "",
+            "rainy": false,
+            "rain_source": "",
+            "activities": [
+              {
+                "id": "wuhou",
+                "name": "武侯祠",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 50,
+                "area": "武侯祠片区",
+                "duration_hours": 2
+              },
+              {
+                "id": "jinli",
+                "name": "锦里步行街",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "武侯祠片区",
+                "duration_hours": 1.5
+              }
+            ],
+            "note": "每天安排不超过两个主要地点，保留午间休息。"
+          },
+          {
+            "day": 2,
+            "date": "",
+            "rainy": true,
+            "rain_source": "演示模拟",
+            "activities": [
+              {
+                "id": "jinsha",
+                "name": "金沙遗址博物馆",
+                "indoor": true,
+                "elderly_friendly": true,
+                "price_per_person": 70,
+                "area": "青羊区",
+                "duration_hours": 2
+              },
+              {
+                "id": "sichuanmuseum",
+                "name": "四川博物院",
+                "indoor": true,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "青羊区",
+                "duration_hours": 2
+              }
+            ],
+            "note": "每天安排不超过两个主要地点，保留午间休息。"
+          },
+          {
+            "day": 3,
+            "date": "",
+            "rainy": false,
+            "rain_source": "",
+            "activities": [
+              {
+                "id": "science",
+                "name": "四川科技馆",
+                "indoor": true,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "市中心",
+                "duration_hours": 2
+              },
+              {
+                "id": "peoplespark",
+                "name": "人民公园",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "青羊区",
+                "duration_hours": 1.5
+              }
+            ],
+            "note": "每天安排不超过两个主要地点，保留午间休息。"
+          }
+        ],
+        "budget_items": [
+          {
+            "category": "住宿",
+            "amount": 720,
+            "detail": "经济型酒店方案 × 2晚（估算）"
+          },
+          {
+            "category": "餐饮",
+            "amount": 600,
+            "detail": "2人 × 3天（估算）"
+          },
+          {
+            "category": "市内交通",
+            "amount": 330,
+            "detail": "打车/公共交通组合（估算）"
+          },
+          {
+            "category": "景点门票",
+            "amount": 240,
+            "detail": "按样例单价估算，实际价格需核对"
+          },
+          {
+            "category": "机动费用",
+            "amount": 180,
+            "detail": "临时支出预留"
+          }
+        ],
+        "total_cost": 2070,
+        "within_budget": true,
+        "changes": [
+          "第2天：将杜甫草堂替换为金沙遗址博物馆（雨天/行动强度约束）。",
+          "第2天：将宽窄巷子替换为四川博物院（雨天/行动强度约束）。",
+          "预算约束：住宿改为经济型酒店方案，并降低餐饮与市内交通估算。"
+        ],
+        "warnings": [
+          "景点名称和价格仅用于课程演示；开放时间、门票及预约要求须出发前核对。",
+          "未指定出发地时，预算不含往返成都的大交通。",
+          "未提供准确出发日期；无法查询逐日天气，也无法计算提醒日期。",
+          "演示设置已关闭实时天气；未生成天气预报。",
+          "雨天条件由用户指定，仅用于情境演示；不代表实时天气。",
+          "以下字段仍使用演示默认值，未经用户确认：成人数、儿童数；请确认同行人数和预算范围。",
+          "DeepSeek 两次调用失败（TimeoutError），已回退本地提取"
+        ],
+        "booking_tasks": [
+          {
+            "task": "核对并预订住宿",
+            "due": "待确定出发日期",
+            "status": "待办"
+          },
+          {
+            "task": "核对往返交通和证件",
+            "due": "待确定出发日期",
+            "status": "待办"
+          },
+          {
+            "task": "出发前复查天气，必要时带伞",
+            "due": "待确定出发日期",
+            "status": "待办"
+          },
+          {
+            "task": "检查身份证及票证",
+            "due": "出发前",
+            "status": "待办"
+          }
+        ],
+        "trace": [
+          {
+            "step": "需求提取",
+            "detail": "DeepSeek 两次调用失败（TimeoutError），已回退本地提取"
+          },
+          {
+            "step": "约束记忆",
+            "detail": "成都，3天，2人，预算¥2500，老人1人"
+          },
+          {
+            "step": "天气工具",
+            "detail": "disabled：演示设置已关闭实时天气；未生成天气预报。"
+          },
+          {
+            "step": "数据查询",
+            "detail": "加载成都景点、酒店、餐饮及市内交通样例"
+          },
+          {
+            "step": "约束检查",
+            "detail": "估算总额¥2070；预算¥2500；雨天替换2项"
+          },
+          {
+            "step": "偏好交接",
+            "detail": "少走路偏好已传入规划规则；实际调整与未满足约束见调整说明和警告。"
+          },
+          {
+            "step": "预算状态",
+            "detail": "estimated_within_budget"
+          },
+          {
+            "step": "结果生成",
+            "detail": "输出行程、预算、提醒清单与调整原因"
+          }
+        ],
+        "coverage": "成都样例数据：景点和费用均为演示估算",
+        "answer": "已为2人生成成都3天行程；估算¥2070，预算¥2500。符合预算。",
+        "budget_status": "estimated_within_budget",
+        "extraction_status": "DeepSeek 两次调用失败（TimeoutError），已回退本地提取",
+        "schema_version": "1.0"
+      }
+    },
+    "bad_json": {
+      "input": "预算降到2500元",
+      "elapsed_seconds": 0.001381,
+      "response": {
+        "request": {
+          "city": "成都",
+          "start_date": "",
+          "days": 3,
+          "budget": 2500,
+          "adults": 1,
+          "elderly": 1,
+          "children": 0,
+          "pace": "舒缓",
+          "rain_days": [
+            2
+          ],
+          "preferences": [
+            "少走路"
+          ],
+          "origin": "",
+          "assumed_fields": [
+            "adults",
+            "children"
+          ]
+        },
+        "weather": {
+          "status": "disabled",
+          "summary": "演示设置已关闭实时天气；未生成天气预报。",
+          "daily": [],
+          "source": "none"
+        },
+        "itinerary": [
+          {
+            "day": 1,
+            "date": "",
+            "rainy": false,
+            "rain_source": "",
+            "activities": [
+              {
+                "id": "wuhou",
+                "name": "武侯祠",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 50,
+                "area": "武侯祠片区",
+                "duration_hours": 2
+              },
+              {
+                "id": "jinli",
+                "name": "锦里步行街",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "武侯祠片区",
+                "duration_hours": 1.5
+              }
+            ],
+            "note": "每天安排不超过两个主要地点，保留午间休息。"
+          },
+          {
+            "day": 2,
+            "date": "",
+            "rainy": true,
+            "rain_source": "演示模拟",
+            "activities": [
+              {
+                "id": "jinsha",
+                "name": "金沙遗址博物馆",
+                "indoor": true,
+                "elderly_friendly": true,
+                "price_per_person": 70,
+                "area": "青羊区",
+                "duration_hours": 2
+              },
+              {
+                "id": "sichuanmuseum",
+                "name": "四川博物院",
+                "indoor": true,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "青羊区",
+                "duration_hours": 2
+              }
+            ],
+            "note": "每天安排不超过两个主要地点，保留午间休息。"
+          },
+          {
+            "day": 3,
+            "date": "",
+            "rainy": false,
+            "rain_source": "",
+            "activities": [
+              {
+                "id": "science",
+                "name": "四川科技馆",
+                "indoor": true,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "市中心",
+                "duration_hours": 2
+              },
+              {
+                "id": "peoplespark",
+                "name": "人民公园",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "青羊区",
+                "duration_hours": 1.5
+              }
+            ],
+            "note": "每天安排不超过两个主要地点，保留午间休息。"
+          }
+        ],
+        "budget_items": [
+          {
+            "category": "住宿",
+            "amount": 720,
+            "detail": "经济型酒店方案 × 2晚（估算）"
+          },
+          {
+            "category": "餐饮",
+            "amount": 600,
+            "detail": "2人 × 3天（估算）"
+          },
+          {
+            "category": "市内交通",
+            "amount": 330,
+            "detail": "打车/公共交通组合（估算）"
+          },
+          {
+            "category": "景点门票",
+            "amount": 240,
+            "detail": "按样例单价估算，实际价格需核对"
+          },
+          {
+            "category": "机动费用",
+            "amount": 180,
+            "detail": "临时支出预留"
+          }
+        ],
+        "total_cost": 2070,
+        "within_budget": true,
+        "changes": [
+          "第2天：将杜甫草堂替换为金沙遗址博物馆（雨天/行动强度约束）。",
+          "第2天：将宽窄巷子替换为四川博物院（雨天/行动强度约束）。",
+          "预算约束：住宿改为经济型酒店方案，并降低餐饮与市内交通估算。"
+        ],
+        "warnings": [
+          "景点名称和价格仅用于课程演示；开放时间、门票及预约要求须出发前核对。",
+          "未指定出发地时，预算不含往返成都的大交通。",
+          "未提供准确出发日期；无法查询逐日天气，也无法计算提醒日期。",
+          "演示设置已关闭实时天气；未生成天气预报。",
+          "雨天条件由用户指定，仅用于情境演示；不代表实时天气。",
+          "以下字段仍使用演示默认值，未经用户确认：成人数、儿童数；请确认同行人数和预算范围。",
+          "DeepSeek 两次调用失败（JSONDecodeError），已回退本地提取"
+        ],
+        "booking_tasks": [
+          {
+            "task": "核对并预订住宿",
+            "due": "待确定出发日期",
+            "status": "待办"
+          },
+          {
+            "task": "核对往返交通和证件",
+            "due": "待确定出发日期",
+            "status": "待办"
+          },
+          {
+            "task": "出发前复查天气，必要时带伞",
+            "due": "待确定出发日期",
+            "status": "待办"
+          },
+          {
+            "task": "检查身份证及票证",
+            "due": "出发前",
+            "status": "待办"
+          }
+        ],
+        "trace": [
+          {
+            "step": "需求提取",
+            "detail": "DeepSeek 两次调用失败（JSONDecodeError），已回退本地提取"
+          },
+          {
+            "step": "约束记忆",
+            "detail": "成都，3天，2人，预算¥2500，老人1人"
+          },
+          {
+            "step": "天气工具",
+            "detail": "disabled：演示设置已关闭实时天气；未生成天气预报。"
+          },
+          {
+            "step": "数据查询",
+            "detail": "加载成都景点、酒店、餐饮及市内交通样例"
+          },
+          {
+            "step": "约束检查",
+            "detail": "估算总额¥2070；预算¥2500；雨天替换2项"
+          },
+          {
+            "step": "偏好交接",
+            "detail": "少走路偏好已传入规划规则；实际调整与未满足约束见调整说明和警告。"
+          },
+          {
+            "step": "预算状态",
+            "detail": "estimated_within_budget"
+          },
+          {
+            "step": "结果生成",
+            "detail": "输出行程、预算、提醒清单与调整原因"
+          }
+        ],
+        "coverage": "成都样例数据：景点和费用均为演示估算",
+        "answer": "已为2人生成成都3天行程；估算¥2070，预算¥2500。符合预算。",
+        "budget_status": "estimated_within_budget",
+        "extraction_status": "DeepSeek 两次调用失败（JSONDecodeError），已回退本地提取",
+        "schema_version": "1.0"
+      }
+    },
+    "mock_model_success": {
+      "input": "预算降到2500元",
+      "elapsed_seconds": 0.000817,
+      "response": {
+        "request": {
+          "city": "成都",
+          "start_date": "",
+          "days": 3,
+          "budget": 2500,
+          "adults": 1,
+          "elderly": 1,
+          "children": 0,
+          "pace": "舒缓",
+          "rain_days": [
+            2
+          ],
+          "preferences": [
+            "少走路"
+          ],
+          "origin": "北京",
+          "assumed_fields": [
+            "adults",
+            "children"
+          ]
+        },
+        "weather": {
+          "status": "disabled",
+          "summary": "演示设置已关闭实时天气；未生成天气预报。",
+          "daily": [],
+          "source": "none"
+        },
+        "itinerary": [
+          {
+            "day": 1,
+            "date": "",
+            "rainy": false,
+            "rain_source": "",
+            "activities": [
+              {
+                "id": "wuhou",
+                "name": "武侯祠",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 50,
+                "area": "武侯祠片区",
+                "duration_hours": 2
+              },
+              {
+                "id": "jinli",
+                "name": "锦里步行街",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "武侯祠片区",
+                "duration_hours": 1.5
+              }
+            ],
+            "note": "每天安排不超过两个主要地点，保留午间休息。"
+          },
+          {
+            "day": 2,
+            "date": "",
+            "rainy": true,
+            "rain_source": "演示模拟",
+            "activities": [
+              {
+                "id": "jinsha",
+                "name": "金沙遗址博物馆",
+                "indoor": true,
+                "elderly_friendly": true,
+                "price_per_person": 70,
+                "area": "青羊区",
+                "duration_hours": 2
+              },
+              {
+                "id": "sichuanmuseum",
+                "name": "四川博物院",
+                "indoor": true,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "青羊区",
+                "duration_hours": 2
+              }
+            ],
+            "note": "每天安排不超过两个主要地点，保留午间休息。"
+          },
+          {
+            "day": 3,
+            "date": "",
+            "rainy": false,
+            "rain_source": "",
+            "activities": [
+              {
+                "id": "science",
+                "name": "四川科技馆",
+                "indoor": true,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "市中心",
+                "duration_hours": 2
+              },
+              {
+                "id": "peoplespark",
+                "name": "人民公园",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "青羊区",
+                "duration_hours": 1.5
+              }
+            ],
+            "note": "每天安排不超过两个主要地点，保留午间休息。"
+          }
+        ],
+        "budget_items": [
+          {
+            "category": "住宿",
+            "amount": 720,
+            "detail": "经济型酒店方案 × 2晚（估算）"
+          },
+          {
+            "category": "餐饮",
+            "amount": 600,
+            "detail": "2人 × 3天（估算）"
+          },
+          {
+            "category": "市内交通",
+            "amount": 330,
+            "detail": "打车/公共交通组合（估算）"
+          },
+          {
+            "category": "景点门票",
+            "amount": 240,
+            "detail": "按样例单价估算，实际价格需核对"
+          },
+          {
+            "category": "机动费用",
+            "amount": 180,
+            "detail": "临时支出预留"
+          }
+        ],
+        "total_cost": 2070,
+        "within_budget": true,
+        "changes": [
+          "第2天：将杜甫草堂替换为金沙遗址博物馆（雨天/行动强度约束）。",
+          "第2天：将宽窄巷子替换为四川博物院（雨天/行动强度约束）。",
+          "预算约束：住宿改为经济型酒店方案，并降低餐饮与市内交通估算。"
+        ],
+        "warnings": [
+          "景点名称和价格仅用于课程演示；开放时间、门票及预约要求须出发前核对。",
+          "未指定出发地时，预算不含往返成都的大交通。",
+          "出发地为北京；目前未接入城际交通报价，往返大交通仍未计入预算。",
+          "未提供准确出发日期；无法查询逐日天气，也无法计算提醒日期。",
+          "演示设置已关闭实时天气；未生成天气预报。",
+          "雨天条件由用户指定，仅用于情境演示；不代表实时天气。",
+          "以下字段仍使用演示默认值，未经用户确认：成人数、儿童数；请确认同行人数和预算范围。"
+        ],
+        "booking_tasks": [
+          {
+            "task": "核对并预订住宿",
+            "due": "待确定出发日期",
+            "status": "待办"
+          },
+          {
+            "task": "核对往返交通和证件",
+            "due": "待确定出发日期",
+            "status": "待办"
+          },
+          {
+            "task": "出发前复查天气，必要时带伞",
+            "due": "待确定出发日期",
+            "status": "待办"
+          },
+          {
+            "task": "检查身份证及票证",
+            "due": "出发前",
+            "status": "待办"
+          }
+        ],
+        "trace": [
+          {
+            "step": "需求提取",
+            "detail": "DeepSeek deepseek-flash 已提取需求"
+          },
+          {
+            "step": "约束记忆",
+            "detail": "成都，3天，2人，预算¥2500，老人1人"
+          },
+          {
+            "step": "天气工具",
+            "detail": "disabled：演示设置已关闭实时天气；未生成天气预报。"
+          },
+          {
+            "step": "数据查询",
+            "detail": "加载成都景点、酒店、餐饮及市内交通样例"
+          },
+          {
+            "step": "约束检查",
+            "detail": "估算总额¥2070；预算¥2500；雨天替换2项"
+          },
+          {
+            "step": "偏好交接",
+            "detail": "少走路偏好已传入规划规则；实际调整与未满足约束见调整说明和警告。"
+          },
+          {
+            "step": "预算状态",
+            "detail": "estimated_within_budget"
+          },
+          {
+            "step": "结果生成",
+            "detail": "输出行程、预算、提醒清单与调整原因"
+          }
+        ],
+        "coverage": "成都样例数据：景点和费用均为演示估算",
+        "answer": "已为2人生成成都3天行程；估算¥2070，预算¥2500。符合预算。",
+        "budget_status": "estimated_within_budget",
+        "extraction_status": "DeepSeek deepseek-flash 已提取需求",
+        "schema_version": "1.0"
+      }
+    },
+    "mock_weather_success": {
+      "input": "去成都三天，2026-10-28出发",
+      "elapsed_seconds": 0.00133,
+      "response": {
+        "request": {
+          "city": "成都",
+          "start_date": "2026-10-28",
+          "days": 3,
+          "budget": 3000,
+          "adults": 1,
+          "elderly": 1,
+          "children": 0,
+          "pace": "舒缓",
+          "rain_days": [],
+          "preferences": [],
+          "origin": "",
+          "assumed_fields": [
+            "budget",
+            "adults",
+            "elderly",
+            "children",
+            "pace"
+          ]
+        },
+        "weather": {
+          "status": "ok",
+          "summary": "离线天气替身，非真实联网预报",
+          "daily": [
+            {
+              "date": "2026-10-28",
+              "rain_probability": 0
+            },
+            {
+              "date": "2026-10-29",
+              "rain_probability": 80
+            },
+            {
+              "date": "2026-10-30",
+              "rain_probability": 0
+            }
+          ],
+          "source": "test-double"
+        },
+        "itinerary": [
+          {
+            "day": 1,
+            "date": "2026-10-28",
+            "rainy": false,
+            "rain_source": "",
+            "activities": [
+              {
+                "id": "wuhou",
+                "name": "武侯祠",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 50,
+                "area": "武侯祠片区",
+                "duration_hours": 2
+              },
+              {
+                "id": "jinli",
+                "name": "锦里步行街",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "武侯祠片区",
+                "duration_hours": 1.5
+              }
+            ],
+            "note": "每天安排不超过两个主要地点，保留午间休息。"
+          },
+          {
+            "day": 2,
+            "date": "2026-10-29",
+            "rainy": true,
+            "rain_source": "实时预报",
+            "activities": [
+              {
+                "id": "jinsha",
+                "name": "金沙遗址博物馆",
+                "indoor": true,
+                "elderly_friendly": true,
+                "price_per_person": 70,
+                "area": "青羊区",
+                "duration_hours": 2
+              },
+              {
+                "id": "sichuanmuseum",
+                "name": "四川博物院",
+                "indoor": true,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "青羊区",
+                "duration_hours": 2
+              }
+            ],
+            "note": "每天安排不超过两个主要地点，保留午间休息。"
+          },
+          {
+            "day": 3,
+            "date": "2026-10-30",
+            "rainy": false,
+            "rain_source": "",
+            "activities": [
+              {
+                "id": "science",
+                "name": "四川科技馆",
+                "indoor": true,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "市中心",
+                "duration_hours": 2
+              },
+              {
+                "id": "peoplespark",
+                "name": "人民公园",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "青羊区",
+                "duration_hours": 1.5
+              }
+            ],
+            "note": "每天安排不超过两个主要地点，保留午间休息。"
+          }
+        ],
+        "budget_items": [
+          {
+            "category": "住宿",
+            "amount": 1240,
+            "detail": "舒适型酒店方案 × 2晚（估算）"
+          },
+          {
+            "category": "餐饮",
+            "amount": 720,
+            "detail": "2人 × 3天（估算）"
+          },
+          {
+            "category": "市内交通",
+            "amount": 450,
+            "detail": "打车/公共交通组合（估算）"
+          },
+          {
+            "category": "景点门票",
+            "amount": 240,
+            "detail": "按样例单价估算，实际价格需核对"
+          },
+          {
+            "category": "机动费用",
+            "amount": 180,
+            "detail": "临时支出预留"
+          }
+        ],
+        "total_cost": 2830,
+        "within_budget": true,
+        "changes": [
+          "第2天：将杜甫草堂替换为金沙遗址博物馆（雨天/行动强度约束）。",
+          "第2天：将宽窄巷子替换为四川博物院（雨天/行动强度约束）。"
+        ],
+        "warnings": [
+          "景点名称和价格仅用于课程演示；开放时间、门票及预约要求须出发前核对。",
+          "未指定出发地时，预算不含往返成都的大交通。",
+          "以下字段仍使用演示默认值，未经用户确认：预算、成人数、老人数、儿童数、节奏；请确认同行人数和预算范围。"
+        ],
+        "booking_tasks": [
+          {
+            "task": "核对并预订住宿",
+            "due": "2026-10-21",
+            "status": "待办"
+          },
+          {
+            "task": "核对往返交通和证件",
+            "due": "2026-10-21",
+            "status": "待办"
+          },
+          {
+            "task": "出发前复查天气，必要时带伞",
+            "due": "2026-10-21",
+            "status": "待办"
+          },
+          {
+            "task": "检查身份证及票证",
+            "due": "2026-10-28",
+            "status": "待办"
+          }
+        ],
+        "trace": [
+          {
+            "step": "需求提取",
+            "detail": "演示模式：使用本地需求提取"
+          },
+          {
+            "step": "约束记忆",
+            "detail": "成都，3天，2人，预算¥3000，老人1人"
+          },
+          {
+            "step": "天气工具",
+            "detail": "ok：离线天气替身，非真实联网预报"
+          },
+          {
+            "step": "数据查询",
+            "detail": "加载成都景点、酒店、餐饮及市内交通样例"
+          },
+          {
+            "step": "约束检查",
+            "detail": "估算总额¥2830；预算¥3000；雨天替换2项"
+          },
+          {
+            "step": "预算状态",
+            "detail": "estimated_within_budget"
+          },
+          {
+            "step": "结果生成",
+            "detail": "输出行程、预算、提醒清单与调整原因"
+          }
+        ],
+        "coverage": "成都样例数据：景点和费用均为演示估算",
+        "answer": "已为2人生成成都3天行程；估算¥2830，预算¥3000。符合预算。",
+        "budget_status": "estimated_within_budget",
+        "extraction_status": "演示模式：使用本地需求提取",
+        "schema_version": "1.0"
+      }
+    },
+    "weather_out_of_range": {
+      "input": "去成都三天，2026-12-27出发",
+      "elapsed_seconds": 0.00102,
+      "response": {
+        "request": {
+          "city": "成都",
+          "start_date": "2026-12-27",
+          "days": 3,
+          "budget": 3000,
+          "adults": 1,
+          "elderly": 1,
+          "children": 0,
+          "pace": "舒缓",
+          "rain_days": [],
+          "preferences": [],
+          "origin": "",
+          "assumed_fields": [
+            "budget",
+            "adults",
+            "elderly",
+            "children",
+            "pace"
+          ]
+        },
+        "weather": {
+          "status": "out_of_range",
+          "summary": "出发日期超出逐日预报范围；请在临近出发时重新查询。",
+          "daily": [],
+          "source": "Open-Meteo"
+        },
+        "itinerary": [
+          {
+            "day": 1,
+            "date": "",
+            "rainy": false,
+            "rain_source": "",
+            "activities": [
+              {
+                "id": "wuhou",
+                "name": "武侯祠",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 50,
+                "area": "武侯祠片区",
+                "duration_hours": 2
+              },
+              {
+                "id": "jinli",
+                "name": "锦里步行街",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "武侯祠片区",
+                "duration_hours": 1.5
+              }
+            ],
+            "note": "每天安排不超过两个主要地点，保留午间休息。"
+          },
+          {
+            "day": 2,
+            "date": "",
+            "rainy": false,
+            "rain_source": "",
+            "activities": [
+              {
+                "id": "dufu",
+                "name": "杜甫草堂",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 50,
+                "area": "青羊区",
+                "duration_hours": 2
+              },
+              {
+                "id": "kuanzhai",
+                "name": "宽窄巷子",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "青羊区",
+                "duration_hours": 1.5
+              }
+            ],
+            "note": "每天安排不超过两个主要地点，保留午间休息。"
+          },
+          {
+            "day": 3,
+            "date": "",
+            "rainy": false,
+            "rain_source": "",
+            "activities": [
+              {
+                "id": "science",
+                "name": "四川科技馆",
+                "indoor": true,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "市中心",
+                "duration_hours": 2
+              },
+              {
+                "id": "peoplespark",
+                "name": "人民公园",
+                "indoor": false,
+                "elderly_friendly": true,
+                "price_per_person": 0,
+                "area": "青羊区",
+                "duration_hours": 1.5
+              }
+            ],
+            "note": "每天安排不超过两个主要地点，保留午间休息。"
+          }
+        ],
+        "budget_items": [
+          {
+            "category": "住宿",
+            "amount": 1240,
+            "detail": "舒适型酒店方案 × 2晚（估算）"
+          },
+          {
+            "category": "餐饮",
+            "amount": 720,
+            "detail": "2人 × 3天（估算）"
+          },
+          {
+            "category": "市内交通",
+            "amount": 450,
+            "detail": "打车/公共交通组合（估算）"
+          },
+          {
+            "category": "景点门票",
+            "amount": 200,
+            "detail": "按样例单价估算，实际价格需核对"
+          },
+          {
+            "category": "机动费用",
+            "amount": 180,
+            "detail": "临时支出预留"
+          }
+        ],
+        "total_cost": 2790,
+        "within_budget": true,
+        "changes": [],
+        "warnings": [
+          "景点名称和价格仅用于课程演示；开放时间、门票及预约要求须出发前核对。",
+          "未指定出发地时，预算不含往返成都的大交通。",
+          "出发日期超出逐日预报范围；请在临近出发时重新查询。",
+          "以下字段仍使用演示默认值，未经用户确认：预算、成人数、老人数、儿童数、节奏；请确认同行人数和预算范围。"
+        ],
+        "booking_tasks": [
+          {
+            "task": "核对并预订住宿",
+            "due": "2026-12-20",
+            "status": "待办"
+          },
+          {
+            "task": "核对往返交通和证件",
+            "due": "2026-12-20",
+            "status": "待办"
+          },
+          {
+            "task": "出发前复查天气，必要时带伞",
+            "due": "2026-12-20",
+            "status": "待办"
+          },
+          {
+            "task": "检查身份证及票证",
+            "due": "2026-12-27",
+            "status": "待办"
+          }
+        ],
+        "trace": [
+          {
+            "step": "需求提取",
+            "detail": "演示模式：使用本地需求提取"
+          },
+          {
+            "step": "约束记忆",
+            "detail": "成都，3天，2人，预算¥3000，老人1人"
+          },
+          {
+            "step": "天气工具",
+            "detail": "out_of_range：出发日期超出逐日预报范围；请在临近出发时重新查询。"
+          },
+          {
+            "step": "数据查询",
+            "detail": "加载成都景点、酒店、餐饮及市内交通样例"
+          },
+          {
+            "step": "约束检查",
+            "detail": "估算总额¥2790；预算¥3000；雨天替换0项"
+          },
+          {
+            "step": "预算状态",
+            "detail": "estimated_within_budget"
+          },
+          {
+            "step": "结果生成",
+            "detail": "输出行程、预算、提醒清单与调整原因"
+          }
+        ],
+        "coverage": "成都样例数据：景点和费用均为演示估算",
+        "answer": "已为2人生成成都3天行程；估算¥2790，预算¥3000。符合预算。",
+        "budget_status": "estimated_within_budget",
+        "extraction_status": "演示模式：使用本地需求提取",
+        "schema_version": "1.0"
+      }
+    }
+  }
+}
