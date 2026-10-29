@@ -1,0 +1,22 @@
+[33mcommit 4d1331b4d5d149c922e1f4842afab56ab1efbf98[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfeat/c-ui[m[33m, [m[1;31morigin/feat/c-ui[m[33m)[m
+Author: nakeshabnak1-glitch <nakeshabnak1@gmail.com>
+Date:   Thu Oct 29 11:41:26 2026 +0800
+
+    add some docs
+
+ .gitignore                                         |   6 [32m+[m
+ app.py                                             | 187 [32m+++++++++++++++++++++[m
+ .../agent-checks-20261028-221909-017893.log        |  32 [32m++++[m
+ .../agent-checks-20261028-222839-217648.log        | 108 [32m++++++++++++[m
+ docs/evidence/agent-checks-latest.json             |   8 [32m+[m[31m-[m
+ docs/evidence/agent-demo.json                      |  42 [32m++[m[31m---[m
+ travel_agent/data/__init__.py                      |   1 [32m+[m
+ travel_agent/data/chengdu.json                     |  20 [32m+++[m
+ travel_agent/rules/__init__.py                     |   1 [32m+[m
+ travel_agent/rules/planner.py                      |  90 [32m++++++++++[m
+ travel_agent/storage/__init__.py                   |   1 [32m+[m
+ travel_agent/storage/exports.py                    |  46 [32m+++++[m
+ travel_agent/storage/local.py                      |  34 [32m++++[m
+ travel_agent/ui/__init__.py                        |   1 [32m+[m
+ travel_agent/ui/theme.py                           |  19 [32m+++[m
+ 15 files changed, 571 insertions(+), 25 deletions(-)

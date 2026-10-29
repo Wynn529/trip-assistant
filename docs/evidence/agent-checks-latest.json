@@ -1,10 +1,10 @@
 {
   "delivery_version": "A-1.2-review",
   "contract_schema_version": "1.0",
-  "generated_at": "2026-10-28T22:28:39.217648+08:00",
-  "python": "3.13.12",
-  "status": "passed",
-  "log": "docs/evidence/agent-checks-20261028-222839-217648.log",
+  "generated_at": "2026-10-28T20:25:16.974548+08:00",
+  "python": "3.14.0",
+  "status": "failed",
+  "log": "docs/evidence/agent-checks-20261028-202516-974548.log",
   "source_sha256": {
     "travel_agent/contracts.py": "2a6b6822b31853052a6f5c30dcaf1f54dbef8bcebe62201c28f00a578d3bd134",
     "travel_agent/llm.py": "a633f003fed168fca4bb774d0d0be1b0cfb7d64da6c51cfc887615739ac7bbdb",

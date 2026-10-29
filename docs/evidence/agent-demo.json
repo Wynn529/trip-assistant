@@ -1,14 +1,14 @@
 {
   "delivery_version": "A-1.2-review",
   "contract_schema_version": "1.0",
-  "generated_at": "2026-10-28T22:28:39.825820+08:00",
-  "python": "3.13.12",
+  "generated_at": "2026-10-28T19:30:26.361956+08:00",
+  "python": "3.14.6",
   "mode": "offline; model/weather success cases are test doubles",
   "network_calls": 0,
   "rounds": [
     {
       "input": "去成都三天，预算3000元，带一位老人",
-      "elapsed_seconds": 0.010736,
+      "elapsed_seconds": 0.024841,
       "response": {
         "request": {
           "city": "成都",
@@ -215,7 +215,7 @@
     },
     {
       "input": "第二天下雨，改成室内行程",
-      "elapsed_seconds": 0.00162,
+      "elapsed_seconds": 0.00233,
       "response": {
         "request": {
           "city": "成都",
@@ -428,7 +428,7 @@
     },
     {
       "input": "预算降到2500元",
-      "elapsed_seconds": 0.00028,
+      "elapsed_seconds": 0.000594,
       "response": {
         "request": {
           "city": "成都",
@@ -642,7 +642,7 @@
     },
     {
       "input": "尽量少走路",
-      "elapsed_seconds": 0.000328,
+      "elapsed_seconds": 0.000581,
       "response": {
         "request": {
           "city": "成都",
@@ -863,7 +863,7 @@
   "scenarios": {
     "non_chengdu": {
       "input": "去杭州三天，预算3000元",
-      "elapsed_seconds": 0.000123,
+      "elapsed_seconds": 0.000239,
       "response": {
         "request": {
           "city": "杭州",
@@ -1019,7 +1019,7 @@
     },
     "weather_failure": {
       "input": "去成都三天，第二天下雨",
-      "elapsed_seconds": 0.000316,
+      "elapsed_seconds": 0.000584,
       "response": {
         "request": {
           "city": "成都",
@@ -1234,7 +1234,7 @@
     },
     "invalid_date": {
       "input": "出发日期改为2026-02-30",
-      "elapsed_seconds": 0.000319,
+      "elapsed_seconds": 0.000512,
       "response": {
         "request": {
           "city": "成都",
@@ -1446,7 +1446,7 @@
     },
     "zero_budget": {
       "input": "去成都三天，预算0元",
-      "elapsed_seconds": 0.000302,
+      "elapsed_seconds": 0.000549,
       "response": {
         "request": {
           "city": "成都",
@@ -1657,7 +1657,7 @@
     },
     "seven_days": {
       "input": "去成都七天",
-      "elapsed_seconds": 0.000283,
+      "elapsed_seconds": 0.000509,
       "response": {
         "request": {
           "city": "成都",
@@ -1975,7 +1975,7 @@
     },
     "no_key": {
       "input": "去成都三天，预算3000元，带一位老人",
-      "elapsed_seconds": 0.000322,
+      "elapsed_seconds": 0.000594,
       "response": {
         "request": {
           "city": "成都",
@@ -2183,7 +2183,7 @@
     },
     "model_timeout": {
       "input": "预算降到2500元",
-      "elapsed_seconds": 0.000319,
+      "elapsed_seconds": 0.00083,
       "response": {
         "request": {
           "city": "成都",
@@ -2403,7 +2403,7 @@
     },
     "bad_json": {
       "input": "预算降到2500元",
-      "elapsed_seconds": 0.000336,
+      "elapsed_seconds": 0.000864,
       "response": {
         "request": {
           "city": "成都",
@@ -2623,7 +2623,7 @@
     },
     "mock_model_success": {
       "input": "预算降到2500元",
-      "elapsed_seconds": 0.000351,
+      "elapsed_seconds": 0.000838,
       "response": {
         "request": {
           "city": "成都",
@@ -2842,7 +2842,7 @@
     },
     "mock_weather_success": {
       "input": "去成都三天，2026-10-28出发",
-      "elapsed_seconds": 0.000394,
+      "elapsed_seconds": 0.000825,
       "response": {
         "request": {
           "city": "成都",
@@ -3065,7 +3065,7 @@
     },
     "weather_out_of_range": {
       "input": "去成都三天，2026-12-27出发",
-      "elapsed_seconds": 0.000346,
+      "elapsed_seconds": 0.001745,
       "response": {
         "request": {
           "city": "成都",
@@ -3089,9 +3089,9 @@
         },
         "weather": {
           "status": "out_of_range",
-          "summary": "出发日期超出可查询天气范围",
+          "summary": "出发日期超出逐日预报范围；请在临近出发时重新查询。",
           "daily": [],
-          "source": "weather_tool"
+          "source": "Open-Meteo"
         },
         "itinerary": [
           {
@@ -3209,7 +3209,7 @@
         "warnings": [
           "景点名称和价格仅用于课程演示；开放时间、门票及预约要求须出发前核对。",
           "未指定出发地时，预算不含往返成都的大交通。",
-          "出发日期超出可查询天气范围",
+          "出发日期超出逐日预报范围；请在临近出发时重新查询。",
           "以下字段仍使用演示默认值，未经用户确认：预算、成人数、老人数、儿童数、节奏；请确认同行人数和预算范围。"
         ],
         "booking_tasks": [
@@ -3245,7 +3245,7 @@
           },
           {
             "step": "天气工具",
-            "detail": "out_of_range：出发日期超出可查询天气范围"
+            "detail": "out_of_range：出发日期超出逐日预报范围；请在临近出发时重新查询。"
           },
           {
             "step": "数据查询",
