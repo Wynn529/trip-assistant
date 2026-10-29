@@ -1,0 +1,32 @@
+Executed at: 2026-10-28T22:19:09.017893+08:00
+Python: 3.13.12
+Mode: offline
+COMMAND: D:\白荷初正儿八经事儿\trip-assistant\.venv\Scripts\python.exe -B -m unittest discover -s tests -p test_agent.py -v
+
+test_agent (unittest.loader._FailedTest.test_agent) ... ERROR
+
+======================================================================
+ERROR: test_agent (unittest.loader._FailedTest.test_agent)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_agent
+Traceback (most recent call last):
+  File "C:\Users\Party\miniconda3\Lib\unittest\loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "C:\Users\Party\miniconda3\Lib\unittest\loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "D:\白荷初正儿八经事儿\trip-assistant\tests\test_agent.py", line 10, in <module>
+    from travel_agent import TravelAgent
+  File "D:\白荷初正儿八经事儿\trip-assistant\travel_agent\__init__.py", line 3, in <module>
+    from .service import TravelAgent
+  File "D:\白荷初正儿八经事儿\trip-assistant\travel_agent\service.py", line 11, in <module>
+    from travel_agent.rules.planner import build_chengdu_plan
+ModuleNotFoundError: No module named 'travel_agent.rules'
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)
+
+EXIT_CODE: 1
