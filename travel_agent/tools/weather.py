@@ -13,6 +13,7 @@ from urllib.parse import urlencode
 from urllib.request import urlopen
 
 from travel_agent.contracts import TripRequest, WeatherContext
+from travel_agent.data.catalog import find_city
 
 FORECAST_DAYS = 16
 CHENGDU_NAMES = {"成都", "成都市", "Chengdu"}
@@ -35,7 +36,10 @@ def fetch_weather(request: TripRequest, today: date | None = None) -> WeatherCon
     if (last - now).days > FORECAST_DAYS - 1:
         return WeatherContext("out_of_range", "出发日期超出逐日预报范围（16 天内）；请在临近出发时重新查询。", source=NOT_QUERIED)
     try:
-        if request.city in CHENGDU_NAMES:
+        city_data = find_city(request.city)
+        if city_data and city_data.get("latitude") is not None:
+            latitude, longitude = city_data["latitude"], city_data["longitude"]
+        elif request.city in CHENGDU_NAMES:
             latitude, longitude = 30.67, 104.06
         else:
             geo_url = "https://geocoding-api.open-meteo.com/v1/search?" + urlencode(

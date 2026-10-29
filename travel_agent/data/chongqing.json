@@ -1,0 +1,179 @@
+{
+  "city": "重庆",
+  "aliases": [
+    "Chongqing"
+  ],
+  "latitude": 29.56,
+  "longitude": 106.55,
+  "data_status": "课程演示样例；景点门票、酒店、餐饮与交通费用均为教学估算，未核实，非实时价格",
+  "hotels": [
+    {
+      "id": "comfort",
+      "name": "舒适型酒店方案",
+      "room_per_night": 520,
+      "area": "解放碑附近",
+      "source_type": "demo_estimate"
+    },
+    {
+      "id": "economy",
+      "name": "经济型酒店方案",
+      "room_per_night": 300,
+      "area": "轨道交通沿线",
+      "source_type": "demo_estimate"
+    }
+  ],
+  "activities": [
+    {
+      "id": "jiefangbei",
+      "name": "解放碑步行街",
+      "indoor": false,
+      "elderly_friendly": true,
+      "price_per_person": 0,
+      "area": "渝中区",
+      "duration_hours": 1.5,
+      "source_type": "demo_estimate"
+    },
+    {
+      "id": "hongyadong",
+      "name": "洪崖洞",
+      "indoor": false,
+      "elderly_friendly": true,
+      "price_per_person": 0,
+      "area": "渝中区",
+      "duration_hours": 1.5,
+      "source_type": "demo_estimate"
+    },
+    {
+      "id": "ciqikou",
+      "name": "磁器口古镇",
+      "indoor": false,
+      "elderly_friendly": true,
+      "price_per_person": 0,
+      "area": "沙坪坝区",
+      "duration_hours": 2,
+      "source_type": "demo_estimate"
+    },
+    {
+      "id": "liziba",
+      "name": "李子坝轻轨穿楼观景台",
+      "indoor": false,
+      "elderly_friendly": true,
+      "price_per_person": 0,
+      "area": "渝中区",
+      "duration_hours": 0.5,
+      "source_type": "demo_estimate"
+    },
+    {
+      "id": "sanxia",
+      "name": "重庆中国三峡博物馆",
+      "indoor": true,
+      "elderly_friendly": true,
+      "price_per_person": 0,
+      "area": "渝中区",
+      "duration_hours": 2,
+      "source_type": "demo_estimate"
+    },
+    {
+      "id": "eling",
+      "name": "鹅岭二厂",
+      "indoor": false,
+      "elderly_friendly": false,
+      "price_per_person": 0,
+      "area": "渝中区",
+      "duration_hours": 1.5,
+      "source_type": "demo_estimate"
+    },
+    {
+      "id": "suodao",
+      "name": "长江索道",
+      "indoor": false,
+      "elderly_friendly": true,
+      "price_per_person": 20,
+      "area": "渝中区",
+      "duration_hours": 1,
+      "source_type": "demo_estimate"
+    },
+    {
+      "id": "nanshan",
+      "name": "南山一棵树观景台",
+      "indoor": false,
+      "elderly_friendly": true,
+      "price_per_person": 30,
+      "area": "南岸区",
+      "duration_hours": 1.5,
+      "source_type": "demo_estimate"
+    },
+    {
+      "id": "kejiguan",
+      "name": "重庆科技馆",
+      "indoor": true,
+      "elderly_friendly": true,
+      "price_per_person": 0,
+      "area": "江北区",
+      "duration_hours": 2,
+      "source_type": "demo_estimate"
+    },
+    {
+      "id": "meishuguan",
+      "name": "重庆美术馆",
+      "indoor": true,
+      "elderly_friendly": true,
+      "price_per_person": 0,
+      "area": "渝中区",
+      "duration_hours": 1.5,
+      "source_type": "demo_estimate"
+    }
+  ],
+  "day_plans": [
+    [
+      "jiefangbei",
+      "hongyadong"
+    ],
+    [
+      "ciqikou",
+      "liziba"
+    ],
+    [
+      "sanxia",
+      "eling"
+    ],
+    [
+      "suodao",
+      "nanshan"
+    ],
+    [
+      "kejiguan",
+      "hongyadong"
+    ],
+    [
+      "meishuguan",
+      "jiefangbei"
+    ],
+    [
+      "ciqikou",
+      "suodao"
+    ]
+  ],
+  "rainy_options": [
+    "sanxia",
+    "kejiguan",
+    "meishuguan"
+  ],
+  "costs": {
+    "meal_per_person_day": {
+      "comfort": 110,
+      "economy": 80
+    },
+    "transport_per_day": {
+      "comfort": 130,
+      "economy": 90
+    },
+    "flex": 180,
+    "comfort_min_budget": 2400,
+    "comfort_max_travelers": 2
+  },
+  "notes": [
+    "景点名称和价格仅用于课程演示；开放时间、门票及预约要求须出发前核对。",
+    "未指定出发地时，预算不含往返重庆的大交通。"
+  ]
+}

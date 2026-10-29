@@ -1,0 +1,171 @@
+{
+  "city": "西安",
+  "aliases": [
+    "Xi'an",
+    "Xian"
+  ],
+  "latitude": 34.34,
+  "longitude": 108.94,
+  "data_status": "课程演示样例；景点门票、酒店、餐饮与交通费用均为教学估算，未核实，非实时价格",
+  "hotels": [
+    {
+      "id": "comfort",
+      "name": "舒适型酒店方案",
+      "room_per_night": 520,
+      "area": "钟楼附近",
+      "source_type": "demo_estimate"
+    },
+    {
+      "id": "economy",
+      "name": "经济型酒店方案",
+      "room_per_night": 300,
+      "area": "地铁沿线",
+      "source_type": "demo_estimate"
+    }
+  ],
+  "activities": [
+    {
+      "id": "chengqiang",
+      "name": "西安城墙",
+      "indoor": false,
+      "elderly_friendly": false,
+      "price_per_person": 54,
+      "area": "碑林区",
+      "duration_hours": 2,
+      "source_type": "demo_estimate"
+    },
+    {
+      "id": "huiminjie",
+      "name": "回民街",
+      "indoor": false,
+      "elderly_friendly": true,
+      "price_per_person": 0,
+      "area": "莲湖区",
+      "duration_hours": 1.5,
+      "source_type": "demo_estimate"
+    },
+    {
+      "id": "bingmayong",
+      "name": "秦始皇帝陵博物院（兵马俑）",
+      "indoor": true,
+      "elderly_friendly": true,
+      "price_per_person": 120,
+      "area": "临潼区",
+      "duration_hours": 3.5,
+      "source_type": "demo_estimate"
+    },
+    {
+      "id": "huaqinggong",
+      "name": "华清宫",
+      "indoor": false,
+      "elderly_friendly": true,
+      "price_per_person": 120,
+      "area": "临潼区",
+      "duration_hours": 2.5,
+      "source_type": "demo_estimate"
+    },
+    {
+      "id": "shanbo",
+      "name": "陕西历史博物馆",
+      "indoor": true,
+      "elderly_friendly": true,
+      "price_per_person": 0,
+      "area": "雁塔区",
+      "duration_hours": 2.5,
+      "source_type": "demo_estimate"
+    },
+    {
+      "id": "dayanta",
+      "name": "大雁塔·大慈恩寺",
+      "indoor": false,
+      "elderly_friendly": true,
+      "price_per_person": 40,
+      "area": "雁塔区",
+      "duration_hours": 1.5,
+      "source_type": "demo_estimate"
+    },
+    {
+      "id": "beilin",
+      "name": "西安碑林博物馆",
+      "indoor": true,
+      "elderly_friendly": true,
+      "price_per_person": 65,
+      "area": "碑林区",
+      "duration_hours": 1.5,
+      "source_type": "demo_estimate"
+    },
+    {
+      "id": "datangbuyecheng",
+      "name": "大唐不夜城",
+      "indoor": false,
+      "elderly_friendly": true,
+      "price_per_person": 0,
+      "area": "雁塔区",
+      "duration_hours": 2,
+      "source_type": "demo_estimate"
+    },
+    {
+      "id": "xianbowuyuan",
+      "name": "西安博物院",
+      "indoor": true,
+      "elderly_friendly": true,
+      "price_per_person": 0,
+      "area": "碑林区",
+      "duration_hours": 2,
+      "source_type": "demo_estimate"
+    }
+  ],
+  "day_plans": [
+    [
+      "chengqiang",
+      "huiminjie"
+    ],
+    [
+      "bingmayong",
+      "huaqinggong"
+    ],
+    [
+      "shanbo",
+      "dayanta"
+    ],
+    [
+      "beilin",
+      "datangbuyecheng"
+    ],
+    [
+      "xianbowuyuan",
+      "huiminjie"
+    ],
+    [
+      "dayanta",
+      "datangbuyecheng"
+    ],
+    [
+      "beilin",
+      "chengqiang"
+    ]
+  ],
+  "rainy_options": [
+    "shanbo",
+    "xianbowuyuan",
+    "beilin",
+    "bingmayong"
+  ],
+  "costs": {
+    "meal_per_person_day": {
+      "comfort": 110,
+      "economy": 80
+    },
+    "transport_per_day": {
+      "comfort": 120,
+      "economy": 90
+    },
+    "flex": 180,
+    "comfort_min_budget": 2400,
+    "comfort_max_travelers": 2
+  },
+  "notes": [
+    "景点名称和价格仅用于课程演示；开放时间、门票及预约要求须出发前核对。",
+    "未指定出发地时，预算不含往返西安的大交通。"
+  ]
+}

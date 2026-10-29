@@ -127,9 +127,11 @@ def _local_extract(text: str, previous: TripRequest | None = None):
     if city and not re.fullmatch(rf"{NUMBER}(?:元|块)?", city.group(1)):
         update("city", city.group(1).removesuffix("市"))
     elif not city:
-        # 去掉“从X出发”，避免把出发地当成目的地；同时提到多个城市时不猜。
-        without_origin = re.sub(r"从[\u4e00-\u9fff]{2,12}?出发", "", text)
-        mentioned = [name for name in KNOWN_CITIES if name in without_origin]
+        # “从X出发”“X出发”里的 X 是出发地，不当成目的地；同时提到多个城市时不猜。
+        mentioned = [
+            name for name in KNOWN_CITIES
+            if name in text and not re.search(rf"{name}市?出发", text)
+        ]
         if len(mentioned) == 1:
             update("city", mentioned[0])
         elif len(mentioned) > 1:

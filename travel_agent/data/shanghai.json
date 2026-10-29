@@ -1,0 +1,179 @@
+{
+  "city": "上海",
+  "aliases": [
+    "Shanghai"
+  ],
+  "latitude": 31.23,
+  "longitude": 121.47,
+  "data_status": "课程演示样例；景点门票、酒店、餐饮与交通费用均为教学估算，未核实，非实时价格",
+  "hotels": [
+    {
+      "id": "comfort",
+      "name": "舒适型酒店方案",
+      "room_per_night": 800,
+      "area": "黄浦区",
+      "source_type": "demo_estimate"
+    },
+    {
+      "id": "economy",
+      "name": "经济型酒店方案",
+      "room_per_night": 420,
+      "area": "地铁沿线",
+      "source_type": "demo_estimate"
+    }
+  ],
+  "activities": [
+    {
+      "id": "waitan",
+      "name": "外滩",
+      "indoor": false,
+      "elderly_friendly": true,
+      "price_per_person": 0,
+      "area": "黄浦区",
+      "duration_hours": 1.5,
+      "source_type": "demo_estimate"
+    },
+    {
+      "id": "nanjinglu",
+      "name": "南京路步行街",
+      "indoor": false,
+      "elderly_friendly": true,
+      "price_per_person": 0,
+      "area": "黄浦区",
+      "duration_hours": 1.5,
+      "source_type": "demo_estimate"
+    },
+    {
+      "id": "yuyuan",
+      "name": "豫园",
+      "indoor": false,
+      "elderly_friendly": true,
+      "price_per_person": 40,
+      "area": "黄浦区",
+      "duration_hours": 1.5,
+      "source_type": "demo_estimate"
+    },
+    {
+      "id": "tianzifang",
+      "name": "田子坊",
+      "indoor": false,
+      "elderly_friendly": true,
+      "price_per_person": 0,
+      "area": "黄浦区",
+      "duration_hours": 1.5,
+      "source_type": "demo_estimate"
+    },
+    {
+      "id": "wukanglu",
+      "name": "武康路",
+      "indoor": false,
+      "elderly_friendly": true,
+      "price_per_person": 0,
+      "area": "徐汇区",
+      "duration_hours": 1.5,
+      "source_type": "demo_estimate"
+    },
+    {
+      "id": "shbwg",
+      "name": "上海博物馆",
+      "indoor": true,
+      "elderly_friendly": true,
+      "price_per_person": 0,
+      "area": "黄浦区",
+      "duration_hours": 2,
+      "source_type": "demo_estimate"
+    },
+    {
+      "id": "zhonghuayishugong",
+      "name": "中华艺术宫",
+      "indoor": true,
+      "elderly_friendly": true,
+      "price_per_person": 0,
+      "area": "浦东新区",
+      "duration_hours": 2,
+      "source_type": "demo_estimate"
+    },
+    {
+      "id": "kejiguan",
+      "name": "上海科技馆",
+      "indoor": true,
+      "elderly_friendly": true,
+      "price_per_person": 45,
+      "area": "浦东新区",
+      "duration_hours": 2.5,
+      "source_type": "demo_estimate"
+    },
+    {
+      "id": "dongfangmingzhu",
+      "name": "东方明珠广播电视塔",
+      "indoor": true,
+      "elderly_friendly": true,
+      "price_per_person": 199,
+      "area": "浦东新区",
+      "duration_hours": 1.5,
+      "source_type": "demo_estimate"
+    },
+    {
+      "id": "sheshan",
+      "name": "佘山国家森林公园",
+      "indoor": false,
+      "elderly_friendly": false,
+      "price_per_person": 0,
+      "area": "松江区",
+      "duration_hours": 3,
+      "source_type": "demo_estimate"
+    }
+  ],
+  "day_plans": [
+    [
+      "waitan",
+      "nanjinglu"
+    ],
+    [
+      "yuyuan",
+      "tianzifang"
+    ],
+    [
+      "shbwg",
+      "wukanglu"
+    ],
+    [
+      "dongfangmingzhu",
+      "waitan"
+    ],
+    [
+      "zhonghuayishugong",
+      "tianzifang"
+    ],
+    [
+      "sheshan"
+    ],
+    [
+      "kejiguan",
+      "nanjinglu"
+    ]
+  ],
+  "rainy_options": [
+    "shbwg",
+    "zhonghuayishugong",
+    "kejiguan",
+    "dongfangmingzhu"
+  ],
+  "costs": {
+    "meal_per_person_day": {
+      "comfort": 160,
+      "economy": 120
+    },
+    "transport_per_day": {
+      "comfort": 170,
+      "economy": 120
+    },
+    "flex": 180,
+    "comfort_min_budget": 3600,
+    "comfort_max_travelers": 2
+  },
+  "notes": [
+    "景点名称和价格仅用于课程演示；开放时间、门票及预约要求须出发前核对。",
+    "未指定出发地时，预算不含往返上海的大交通。"
+  ]
+}

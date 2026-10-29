@@ -8,7 +8,8 @@ from typing import Callable
 
 from travel_agent.contracts import AgentResponse, TripRequest, WeatherContext
 from travel_agent.llm import DeepSeekInterpreter
-from travel_agent.rules.planner import build_chengdu_plan
+from travel_agent.data.catalog import find_city
+from travel_agent.rules.planner import build_chengdu_plan, build_city_plan
 from travel_agent.tools.weather import fetch_weather
 
 
@@ -35,9 +36,15 @@ class TravelAgent:
 
         warnings: list[str] = []
         changes: list[str] = []
-        if request.city in {"成都", "成都市", "Chengdu"}:
-            coverage = "成都样例数据：景点和费用均为演示估算"
-            itinerary, budget_items, total, changes, warnings = build_chengdu_plan(request, weather)
+        # C 修改：按城市数据目录判断是否已收录；成都仍走 build_chengdu_plan。
+        city_data = find_city(request.city)
+        if city_data:
+            city_name = city_data["city"]
+            coverage = f"{city_name}样例数据：景点和费用均为演示估算"
+            if city_name == "成都":
+                itinerary, budget_items, total, changes, warnings = build_chengdu_plan(request, weather)
+            else:
+                itinerary, budget_items, total, changes, warnings = build_city_plan(request, weather, city_data)
             valid_cost = (
                 type(total) is int and total >= 0
                 and isinstance(budget_items, list) and bool(budget_items)
@@ -47,7 +54,7 @@ class TravelAgent:
             if not valid_cost:
                 budget_items, total = [], 0
                 warnings.append("规则费用数据无效或分项与总额不一致，已隐藏预算结论，请联系数据规则负责人核对。")
-            trace.append({"step": "数据查询", "detail": "加载成都景点、酒店、餐饮及市内交通样例"})
+            trace.append({"step": "数据查询", "detail": f"加载{city_name}景点、酒店、餐饮及市内交通样例"})
             trace.append({"step": "约束检查", "detail": f"估算总额¥{total}；预算¥{request.budget}；雨天替换{len([x for x in changes if '替换' in x])}项"})
             within_budget = valid_cost and total <= request.budget
             budget_status = ("estimated_within_budget" if within_budget else "estimated_over_budget") if valid_cost else "unverified"
@@ -65,7 +72,7 @@ class TravelAgent:
             if not valid_cost:
                 answer = f"已生成{request.city}行程方向，但预算校验失败；费用未核实。"
         else:
-            coverage = "非成都城市：景点、酒店和交通建议均未核实"
+            coverage = "未收录城市：景点、酒店和交通建议均未核实"
             itinerary = [
                 {
                     "day": day,
@@ -106,7 +113,7 @@ class TravelAgent:
         if "少走路" in request.preferences:
             detail = (
                 "少走路偏好已传入规划规则；实际调整与未满足约束见调整说明和警告。"
-                if request.city in {"成都", "成都市", "Chengdu"}
+                if city_data
                 else "已保留少走路偏好；当前仅提供未核实的行程方向，未执行成都规划规则或验证步行量。"
             )
             trace.append({"step": "偏好交接", "detail": detail})

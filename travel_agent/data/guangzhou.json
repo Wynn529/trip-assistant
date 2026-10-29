@@ -1,0 +1,169 @@
+{
+  "city": "广州",
+  "aliases": [
+    "Guangzhou"
+  ],
+  "latitude": 23.13,
+  "longitude": 113.26,
+  "data_status": "课程演示样例；景点门票、酒店、餐饮与交通费用均为教学估算，未核实，非实时价格",
+  "hotels": [
+    {
+      "id": "comfort",
+      "name": "舒适型酒店方案",
+      "room_per_night": 600,
+      "area": "天河区",
+      "source_type": "demo_estimate"
+    },
+    {
+      "id": "economy",
+      "name": "经济型酒店方案",
+      "room_per_night": 330,
+      "area": "地铁沿线",
+      "source_type": "demo_estimate"
+    }
+  ],
+  "activities": [
+    {
+      "id": "chenjiaci",
+      "name": "陈家祠",
+      "indoor": true,
+      "elderly_friendly": true,
+      "price_per_person": 10,
+      "area": "荔湾区",
+      "duration_hours": 1.5,
+      "source_type": "demo_estimate"
+    },
+    {
+      "id": "yongqingfang",
+      "name": "永庆坊",
+      "indoor": false,
+      "elderly_friendly": true,
+      "price_per_person": 0,
+      "area": "荔湾区",
+      "duration_hours": 1.5,
+      "source_type": "demo_estimate"
+    },
+    {
+      "id": "shamian",
+      "name": "沙面",
+      "indoor": false,
+      "elderly_friendly": true,
+      "price_per_person": 0,
+      "area": "荔湾区",
+      "duration_hours": 1.5,
+      "source_type": "demo_estimate"
+    },
+    {
+      "id": "beijinglu",
+      "name": "北京路步行街",
+      "indoor": false,
+      "elderly_friendly": true,
+      "price_per_person": 0,
+      "area": "越秀区",
+      "duration_hours": 1.5,
+      "source_type": "demo_estimate"
+    },
+    {
+      "id": "yuexiu",
+      "name": "越秀公园",
+      "indoor": false,
+      "elderly_friendly": true,
+      "price_per_person": 0,
+      "area": "越秀区",
+      "duration_hours": 2,
+      "source_type": "demo_estimate"
+    },
+    {
+      "id": "nanyuewang",
+      "name": "南越王博物院",
+      "indoor": true,
+      "elderly_friendly": true,
+      "price_per_person": 12,
+      "area": "越秀区",
+      "duration_hours": 1.5,
+      "source_type": "demo_estimate"
+    },
+    {
+      "id": "gdbwg",
+      "name": "广东省博物馆",
+      "indoor": true,
+      "elderly_friendly": true,
+      "price_per_person": 0,
+      "area": "天河区",
+      "duration_hours": 2,
+      "source_type": "demo_estimate"
+    },
+    {
+      "id": "guangzhouta",
+      "name": "广州塔",
+      "indoor": true,
+      "elderly_friendly": true,
+      "price_per_person": 150,
+      "area": "海珠区",
+      "duration_hours": 1.5,
+      "source_type": "demo_estimate"
+    },
+    {
+      "id": "baiyunshan",
+      "name": "白云山",
+      "indoor": false,
+      "elderly_friendly": false,
+      "price_per_person": 5,
+      "area": "白云区",
+      "duration_hours": 3,
+      "source_type": "demo_estimate"
+    }
+  ],
+  "day_plans": [
+    [
+      "chenjiaci",
+      "yongqingfang"
+    ],
+    [
+      "shamian",
+      "beijinglu"
+    ],
+    [
+      "yuexiu",
+      "nanyuewang"
+    ],
+    [
+      "gdbwg",
+      "guangzhouta"
+    ],
+    [
+      "baiyunshan"
+    ],
+    [
+      "yongqingfang",
+      "shamian"
+    ],
+    [
+      "nanyuewang",
+      "beijinglu"
+    ]
+  ],
+  "rainy_options": [
+    "gdbwg",
+    "nanyuewang",
+    "chenjiaci",
+    "guangzhouta"
+  ],
+  "costs": {
+    "meal_per_person_day": {
+      "comfort": 140,
+      "economy": 100
+    },
+    "transport_per_day": {
+      "comfort": 140,
+      "economy": 100
+    },
+    "flex": 180,
+    "comfort_min_budget": 2700,
+    "comfort_max_travelers": 2
+  },
+  "notes": [
+    "景点名称和价格仅用于课程演示；开放时间、门票及预约要求须出发前核对。",
+    "未指定出发地时，预算不含往返广州的大交通。"
+  ]
+}

@@ -13,6 +13,7 @@ import streamlit as st
 
 from travel_agent import TravelAgent
 from travel_agent.contracts import AgentResponse, TripRequest, WeatherContext
+from travel_agent.data.catalog import supported_cities
 from travel_agent.llm import load_local_env
 from travel_agent.storage.exports import expense_csv, itinerary_csv
 from travel_agent.storage.local import list_trips, load_trip, save_trip
@@ -163,7 +164,7 @@ with st.sidebar:
     st.caption("无 Key 时使用规则提取。关闭天气查询时不联网；雨天只来自你在对话中的说明。")
     st.divider()
     st.subheader("一键演示")
-    st.caption("按 1→4 顺序点击为主线四轮；第 5 项演示非成都城市。")
+    st.caption("按 1→4 顺序点击为主线四轮；第 5 项演示未收录城市（显示未核实）。")
     for index, prompt in enumerate(DEMO_PROMPTS, start=1):
         if st.button(f"{index}. {prompt}", width="stretch"):
             run_prompt(prompt, live_model, live_weather)
@@ -204,7 +205,7 @@ with st.sidebar:
 
 st.markdown('<div class="hero"><h1>行知 · 旅行规划助理</h1><p>从一句想法到可调整的行程、预算、提醒和费用记录</p></div>', unsafe_allow_html=True)
 st.markdown(
-    f'<span class="tag">成都完整演示</span><span class="tag">{weather_tag(st.session_state.result, live_weather)}</span>'
+    f'<span class="tag">已收录：{"、".join(supported_cities())}</span><span class="tag">{weather_tag(st.session_state.result, live_weather)}</span>'
     '<span class="tag">费用为教学估算</span>',
     unsafe_allow_html=True,
 )
