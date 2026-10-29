@@ -16,6 +16,14 @@ from urllib.request import Request, urlopen
 from travel_agent.contracts import REQUEST_FIELDS, TripRequest
 
 NUMBER = r"[0-9零一二两三四五六七八九十百千万]+"
+# C 补充：用户只写城市名、没有“去/到”时（如“成都，4天”），用常见城市表兜底识别。
+KNOWN_CITIES = (
+    "乌鲁木齐", "呼和浩特", "石家庄", "哈尔滨",
+    "北京", "上海", "广州", "深圳", "成都", "重庆", "杭州", "西安", "南京", "武汉",
+    "苏州", "天津", "长沙", "厦门", "青岛", "昆明", "大理", "丽江", "三亚", "桂林",
+    "拉萨", "贵阳", "南宁", "郑州", "济南", "合肥", "福州", "沈阳", "大连", "宁波",
+    "无锡", "兰州", "西宁", "银川", "太原", "南昌", "海口", "香港", "澳门", "台北",
+)
 
 
 def load_local_env() -> None:
@@ -118,6 +126,14 @@ def _local_extract(text: str, previous: TripRequest | None = None):
         city = re.search(r"(?:改去|改到|到)([\u4e00-\u9fff]{2,12}?)(?:旅游|游玩|[零一二两三四五六七八九十0-9]+天|[，,。\s]|$)", text)
     if city and not re.fullmatch(rf"{NUMBER}(?:元|块)?", city.group(1)):
         update("city", city.group(1).removesuffix("市"))
+    elif not city:
+        # 去掉“从X出发”，避免把出发地当成目的地；同时提到多个城市时不猜。
+        without_origin = re.sub(r"从[\u4e00-\u9fff]{2,12}?出发", "", text)
+        mentioned = [name for name in KNOWN_CITIES if name in without_origin]
+        if len(mentioned) == 1:
+            update("city", mentioned[0])
+        elif len(mentioned) > 1:
+            notes.append("同时提到多个城市，未自动修改目的地；请用“去某地”说明。")
     days = re.search(rf"(?<![第0-9零一二两三四五六七八九十-])(-?{NUMBER})\s*天", text)
     if days:
         value = days.group(1)
@@ -130,6 +146,11 @@ def _local_extract(text: str, previous: TripRequest | None = None):
             notes.append("budget 输入无效，目前只接受整数元；已保留原值。")
         else:
             numeric_update("budget", value)
+    else:
+        # C 补充：没写“预算”时（如“2500元”），句中只有一个“X元/块”且不是人均、门票、每晚等单价，按预算处理。
+        amounts = re.findall(rf"(?<![0-9零一二两三四五六七八九十百千万])({NUMBER})\s*(?:元|块)", text)
+        if len(amounts) == 1 and not re.search(r"每人|人均|每晚|一晚|每天|门票|单价", text):
+            numeric_update("budget", amounts[0])
     start = re.search(r"(20\d{2})[-/.年](\d{1,2})[-/.月](\d{1,2})", text)
     if start:
         update("start_date", f"{int(start[1]):04d}-{int(start[2]):02d}-{int(start[3]):02d}")
@@ -146,6 +167,10 @@ def _local_extract(text: str, previous: TripRequest | None = None):
             numeric_update(name, count[1])
         elif name != "adults" and re.search(words, text):
             update(name, max(1, getattr(result, name)))
+    # C 补充：本轮明确列出成人或儿童人数、没提老人，且老人数仍是演示默认值时，按 0 位老人计。
+    if ("adults" in explicit or "children" in explicit) and "elderly" not in explicit \
+            and "elderly" in result.assumed_fields:
+        update("elderly", 0)
     if "少走路" in text or "轻松" in text or "慢节奏" in text:
         update("pace", "舒缓")
         if "少走路" in text:
