@@ -74,7 +74,10 @@ def build_city_plan(
                 request.elderly > 0 and not activity["elderly_friendly"]
             )
             if replace:
-                replacement = next((x for x in rainy_options if x not in used and x not in selected), None)
+                # C 修复：也排除当天稍后本来就安排的景点，避免同一天重复。
+                replacement = next(
+                    (x for x in rainy_options if x not in used and x not in selected and x not in base), None
+                )
                 if replacement:
                     selected.append(replacement)
                     changes.append(f"第{day_number}天：将{activity['name']}替换为{activities[replacement]['name']}（雨天/行动强度约束）。")
@@ -96,25 +99,86 @@ def build_city_plan(
         )
     travelers = request.travelers
     hotels = {item["id"]: item for item in data["hotels"]}
+
+    def cost_items(tier: str) -> tuple[list[dict], int]:
+        hotel = hotels[tier]
+        nights = max(0, request.days - 1)
+        tickets = sum(item["price_per_person"] * travelers for day in itinerary for item in day["activities"])
+        meals = costs["meal_per_person_day"][tier] * travelers * request.days
+        local_transport = costs["transport_per_day"][tier] * request.days
+        items = [
+            {"category": "住宿", "amount": hotel["room_per_night"] * nights, "detail": f"{hotel['name']} × {nights}晚（估算）"},
+            {"category": "餐饮", "amount": meals, "detail": f"{travelers}人 × {request.days}天（估算）"},
+            {"category": "市内交通", "amount": local_transport, "detail": "打车/公共交通组合（估算）"},
+            {"category": "景点门票", "amount": tickets, "detail": "按样例单价估算，实际价格需核对"},
+            {"category": "机动费用", "amount": costs["flex"], "detail": "临时支出预留"},
+        ]
+        return items, sum(item["amount"] for item in items)
+
+    # C 修改：先按原规则选档；超预算时依次降为经济型住宿、换成更便宜的景点，
+    # 预算够用时结果与原版完全一致。
     comfortable = request.budget >= costs["comfort_min_budget"] and travelers <= costs["comfort_max_travelers"]
     tier = "comfort" if comfortable else "economy"
-    hotel = hotels[tier]
+    items, total = cost_items(tier)
+    if tier == "comfort" and total > request.budget:
+        tier = "economy"
+        items, total = cost_items(tier)
     if tier == "economy":
         changes.append("预算约束：住宿改为经济型酒店方案，并降低餐饮与市内交通估算。")
-    nights = max(0, request.days - 1)
-    tickets = sum(item["price_per_person"] * travelers for day in itinerary for item in day["activities"])
-    meals = costs["meal_per_person_day"][tier] * travelers * request.days
-    local_transport = costs["transport_per_day"][tier] * request.days
-    items = [
-        {"category": "住宿", "amount": hotel["room_per_night"] * nights, "detail": f"{hotel['name']} × {nights}晚（估算）"},
-        {"category": "餐饮", "amount": meals, "detail": f"{travelers}人 × {request.days}天（估算）"},
-        {"category": "市内交通", "amount": local_transport, "detail": "打车/公共交通组合（估算）"},
-        {"category": "景点门票", "amount": tickets, "detail": "按样例单价估算，实际价格需核对"},
-        {"category": "机动费用", "amount": costs["flex"], "detail": "临时支出预留"},
-    ]
-    total = sum(item["amount"] for item in items)
     if total > request.budget:
-        warnings.append(f"估算费用 ¥{total} 超过预算 ¥{request.budget}；请提高预算、缩短行程或进一步减少项目。")
+        changes.extend(_swap_for_budget(itinerary, activities, request, total - request.budget))
+        items, total = cost_items(tier)
+    if total > request.budget:
+        warnings.append(
+            f"估算费用 ¥{total} 超过预算 ¥{request.budget}；已改用经济型住宿并尽量换成免费或更便宜的景点，"
+            f"这是{travelers}人{request.days}天的最低估算。请提高预算、缩短行程或减少同行人数。"
+        )
     if request.origin:
         warnings.append(f"出发地为{request.origin}；目前未接入城际交通报价，往返大交通仍未计入预算。")
     return itinerary, items, total, changes, warnings
+
+
+def _price_label(price: int) -> str:
+    return "免费" if price == 0 else f"约¥{price}/人"
+
+
+def _swap_for_budget(itinerary: list[dict], activities: dict, request: TripRequest, over_by: int) -> list[str]:
+    """把收费景点换成更便宜的同类可行景点，先换最贵的，直到不超预算或没有可换的。
+
+    替换项需满足：雨天为室内、有老人时适合老人、同一天不重复；优先选行程中未出现过的。
+    """
+    changes: list[str] = []
+    used = {item["id"] for day in itinerary for item in day["activities"]}
+    while over_by > 0:
+        candidates = sorted(
+            ((item["price_per_person"], day_index, item_index)
+             for day_index, day in enumerate(itinerary)
+             for item_index, item in enumerate(day["activities"]) if item["price_per_person"] > 0),
+            key=lambda entry: (-entry[0], entry[1], entry[2]),
+        )
+        swapped = False
+        for price, day_index, item_index in candidates:
+            day = itinerary[day_index]
+            in_day = {item["id"] for item in day["activities"]}
+            options = [
+                option for option in activities.values()
+                if option["price_per_person"] < price and option["id"] not in in_day
+                and (not day["rainy"] or option["indoor"])
+                and (request.elderly == 0 or option["elderly_friendly"])
+            ]
+            if not options:
+                continue
+            pick = min(options, key=lambda option: (option["id"] in used, option["price_per_person"], option["id"]))
+            original = day["activities"][item_index]
+            day["activities"][item_index] = pick.copy()
+            used.add(pick["id"])
+            over_by -= (price - pick["price_per_person"]) * request.travelers
+            changes.append(
+                f"预算约束：第{day['day']}天将{original['name']}（{_price_label(price)}）"
+                f"换为{pick['name']}（{_price_label(pick['price_per_person'])}）。"
+            )
+            swapped = True
+            break
+        if not swapped:
+            break
+    return changes

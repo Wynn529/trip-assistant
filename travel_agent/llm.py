@@ -173,6 +173,23 @@ def _local_extract(text: str, previous: TripRequest | None = None):
     if ("adults" in explicit or "children" in explicit) and "elderly" not in explicit \
             and "elderly" in result.assumed_fields:
         update("elderly", 0)
+    # C 补充：只说总人数（“我自己一个人”“两个人”“3人”），没分大人、老人、小孩时，按全部为成人计。
+    if not {"adults", "elderly", "children"} & set(explicit):
+        total = None
+        if re.search(r"我自己|独自|独行|单人|(?<![0-9零一二两三四五六七八九十百千万])一个?人(?!均|民|次|份)", text):
+            total = 1
+        else:
+            group = re.search(rf"({NUMBER})\s*个?人(?!均|民|次|份)", text)
+            if group:
+                try:
+                    total = _chinese_number(group[1])
+                except ValueError:
+                    notes.append("人数输入无效，请使用完整整数或完整中文数字；已保留原值。")
+        if total is not None:
+            update("adults", total)
+            if "adults" in explicit:
+                update("elderly", 0)
+                update("children", 0)
     if "少走路" in text or "轻松" in text or "慢节奏" in text:
         update("pace", "舒缓")
         if "少走路" in text:

@@ -108,5 +108,65 @@ class CityPlanTests(unittest.TestCase):
         self.assertNotIn("geocoding", urls[0])
         self.assertIn("latitude=34.34", urls[0])
 
+class BudgetFitTests(unittest.TestCase):
+    """超预算时先降档、换便宜景点；仍不够才提示最低估算。"""
+
+    def setUp(self):
+        patcher = patch.dict(os.environ, {"DEEPSEEK_API_KEY": ""})
+        patcher.start()
+        self.addCleanup(patcher.stop)
+        self.agent = TravelAgent(live_model=False, live_weather=False)
+
+    def test_minimum_budget_is_reachable_and_reported(self):
+        for city in supported_cities():
+            with self.subTest(city=city):
+                base = TripRequest(city=city, days=3, adults=2, elderly=0, assumed_fields=[])
+                floor = self.agent.turn("继续", TripRequest(**{**base.to_dict(), "budget": 0}))
+                self.assertTrue(any("最低估算" in w for w in floor.warnings))
+                exact = self.agent.turn("继续", TripRequest(**{**base.to_dict(), "budget": floor.total_cost}))
+                self.assertEqual(exact.total_cost, floor.total_cost)
+                self.assertEqual(exact.budget_status, "estimated_within_budget")
+                below = self.agent.turn("继续", TripRequest(**{**base.to_dict(), "budget": floor.total_cost - 1}))
+                self.assertEqual(below.budget_status, "estimated_over_budget")
+
+    def test_long_trip_downgrades_hotel_instead_of_overspending(self):
+        result = self.agent.turn("继续", TripRequest(city="成都", days=7, adults=2, elderly=0, budget=5000, assumed_fields=[]))
+        hotel = next(item for item in result.budget_items if item["category"] == "住宿")
+        self.assertIn("经济型", hotel["detail"])
+        self.assertLessEqual(result.total_cost, 5000)
+        self.assertEqual(result.budget_status, "estimated_within_budget")
+
+    def test_generous_budget_makes_no_swaps(self):
+        for city in supported_cities():
+            with self.subTest(city=city):
+                result = self.agent.turn("继续", TripRequest(city=city, days=3, adults=2, elderly=0, budget=100000, assumed_fields=[]))
+                self.assertFalse(any("预算约束" in change for change in result.changes))
+
+    def test_no_activity_repeats_within_a_day(self):
+        for city in supported_cities():
+            for days in range(1, 8):
+                for rain in ([], list(range(1, days + 1))):
+                    with self.subTest(city=city, days=days, rain=rain):
+                        result = self.agent.turn("继续", TripRequest(city=city, days=days, elderly=1, budget=0, rain_days=rain))
+                        for day in result.itinerary:
+                            ids = [a["id"] for a in day["activities"]]
+                            self.assertEqual(len(ids), len(set(ids)))
+
+
+class HeadCountTests(unittest.TestCase):
+    def test_total_head_count_means_adults_only(self):
+        from travel_agent.llm import fallback_extract
+        for text, travelers in (("去西安，我自己一个人", 1), ("一人出行，去重庆", 1), ("去成都三天，两个人", 2), ("上海4天，3人", 3)):
+            with self.subTest(text=text):
+                result = fallback_extract(text)
+                self.assertEqual((result.travelers, result.elderly, result.children), (travelers, 0, 0))
+
+    def test_explicit_party_is_not_overridden(self):
+        from travel_agent.llm import fallback_extract
+        result = fallback_extract("一个人去北京，带一位老人")
+        self.assertEqual(result.elderly, 1)
+        self.assertEqual(fallback_extract("十一个人去成都").adults, 1)  # 超出上限，保留原值并提示
+
+
 if __name__ == "__main__":
     unittest.main()
