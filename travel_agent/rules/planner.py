@@ -97,6 +97,15 @@ def build_city_plan(
                 "note": "每天安排不超过两个主要地点，保留午间休息。" if request.elderly else "预留交通与用餐时间。",
             }
         )
+    if "少走路" in request.preferences:
+        # C 补充：“少走路”时每天只保留一个主要地点，优先时长短的，降低步行与换乘强度。
+        for day in itinerary:
+            if len(day["activities"]) > 1:
+                keep = min(day["activities"], key=lambda item: item.get("duration_hours", 0))
+                dropped = [item["name"] for item in day["activities"] if item is not keep]
+                day["activities"] = [keep]
+                day["note"] = "按“少走路”偏好每天只安排一个主要地点，其余时间就近休息。"
+                changes.append(f"第{day['day']}天：按“少走路”偏好只保留{keep['name']}，去掉{'、'.join(dropped)}。")
     travelers = request.travelers
     hotels = {item["id"]: item for item in data["hotels"]}
 

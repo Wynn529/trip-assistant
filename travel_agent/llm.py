@@ -46,9 +46,18 @@ def _chinese_number(value: str) -> int:
     digits = dict(zip("零一二两三四五六七八九", (0, 1, 2, 2, 3, 4, 5, 6, 7, 8, 9)))
     units = {"十": 10, "百": 100, "千": 1000}
     total = section = current = 0
+    last_unit = 0
+    previous = ""
     for char in value:
         if char in digits:
             current = digits[char]
+            # C 补充：“两千五”“一万二”“三百五”省略了末位单位，按上一单位的十分之一计。
+            if previous in units or previous == "万":
+                last_unit = 10000 if previous == "万" else units[previous]
+            else:
+                last_unit = 0
+            previous = char
+            continue
         elif char == "万":
             total += (section + current or 1) * 10000
             section = current = 0
@@ -57,6 +66,9 @@ def _chinese_number(value: str) -> int:
             current = 0
         else:
             raise ValueError("unsupported number")
+        previous = char
+    if current and last_unit >= 100:
+        current *= last_unit // 10
     return total + section + current
 
 
@@ -81,13 +93,14 @@ def _field_mentioned(name: str, value, text: str) -> bool:
     if name == "preferences":
         return any(item in text for item in value) or bool(re.search(r"偏好|喜欢|倾向|多看|想看", text))
     hints = {
-        "start_date": r"日期|出发|20\d{2}[-/.年]",
+        "start_date": r"日期|出发|20\d{2}[-/.年]|今天|明天|后天|下周|下个?月|周[一二三四五六日末]|星期|国庆|元旦|春节|五一|中秋|\d+月\d+[日号]",
         "days": rf"{NUMBER}\s*(?:天|日)|天数|停留时长",
-        "budget": r"预算|开销|花费|总费用|总价|控制在|降到",
-        "adults": r"成人|成年人|大人",
-        "elderly": r"老人|长辈",
-        "children": r"小孩|孩子|儿童",
-        "pace": r"舒缓|适中|紧凑|轻松|慢节奏|少走路|悠闲",
+        "budget": r"预算|开销|花费|总费用|总价|控制在|降到|元|块|钱",
+        # C 补充：常见亲属与口语说法，避免模型正确理解的人数被防护规则丢弃。
+        "adults": r"成人|成年人|大人|老婆|老公|妻子|丈夫|爱人|对象|男朋友|女朋友|朋友|同事|同学|夫妻|情侣|我们|个人|[0-9一二两三四五六七八九十]人",
+        "elderly": r"老人|长辈|爸妈|父母|爸爸|妈妈|老爸|老妈|爷爷|奶奶|外公|外婆|姥姥|姥爷",
+        "children": r"小孩|孩子|儿童|娃|宝宝|儿子|女儿",
+        "pace": r"舒缓|适中|紧凑|轻松|慢节奏|少走路|悠闲|累|赶|休闲|放松|慢慢",
         "rain_days": r"下雨|有雨|转晴|雨天",
     }
     if name == "start_date" and value == "":
@@ -290,6 +303,10 @@ class DeepSeekInterpreter:
                     name: value for name, value in updates.items()
                     if name in explicit or _field_mentioned(name, value, text)
                 }
+                # C 补充：本轮明确了成人或儿童人数而没提老人，且老人数仍是演示默认值时，采纳模型给出的老人数。
+                if ("adults" in scoped_updates or "children" in scoped_updates) and "elderly" in updates \
+                        and "elderly" not in scoped_updates and "elderly" in fallback.assumed_fields:
+                    scoped_updates["elderly"] = updates["elderly"]
                 ignored = sorted(set(updates) - set(scoped_updates))
                 result = _merge(fallback, {**scoped_updates, **explicit})
                 note = "重试后成功" if attempt else "已提取需求"
