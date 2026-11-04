@@ -20,18 +20,44 @@ class TravelAgent:
         live_weather: bool = True,
         weather_provider: Callable[[TripRequest], WeatherContext] | None = None,
         interpreter: DeepSeekInterpreter | None = None,
+        agent_mode: bool = False,
     ):
         self.interpreter = interpreter or DeepSeekInterpreter(live=live_model)
         self.live_weather = live_weather
         self.weather_provider = weather_provider or fetch_weather
+        # C 新增：agent_mode=True 且有密钥时，由 DeepSeek 自主调用工具（见 agent_loop.py）；
+        # 默认 False，固定流程与原版完全一致。
+        self.agent_mode = agent_mode
 
     def turn(self, user_text: str, previous: TripRequest | None = None) -> AgentResponse:
-        trace: list[dict[str, str]] = []
+        if self.agent_mode:
+            from travel_agent.agent_loop import AgentLoop
+            self._agent_fallback_note = ""
+            result = AgentLoop(self).run(user_text, previous)
+            if result is not None:
+                return result
+            response = self.pipeline_turn(user_text, previous)
+            if self._agent_fallback_note:
+                response.trace.insert(0, {"step": "Agent 回退", "detail": self._agent_fallback_note})
+                response.warnings.append(self._agent_fallback_note + "。")
+            return response
+        return self.pipeline_turn(user_text, previous)
+
+    def pipeline_turn(self, user_text: str, previous: TripRequest | None = None) -> AgentResponse:
+        """固定流程：提取需求 → 天气 → 规则规划 → 预算 → 回复。"""
         request, _ideas, extraction_status = self.interpreter.parse(user_text, previous)
+        return self.respond(user_text, request, extraction_status)
+
+    def respond(
+        self, user_text: str, request: TripRequest, extraction_status: str,
+        weather: WeatherContext | None = None,
+    ) -> AgentResponse:
+        """C 拆分：对已确定的需求执行天气、规划、预算与回复；Agent 的 plan_trip 工具复用这里。"""
+        trace: list[dict[str, str]] = []
         trace.append({"step": "需求提取", "detail": extraction_status})
         trace.append({"step": "约束记忆", "detail": f"{request.city}，{request.days}天，{request.travelers}人，预算¥{request.budget}，老人{request.elderly}人"})
 
-        weather = self._weather(request)
+        weather = weather if weather is not None else self._weather(request)
         trace.append({"step": "天气工具", "detail": f"{weather.status}：{weather.summary}"})
 
         warnings: list[str] = []

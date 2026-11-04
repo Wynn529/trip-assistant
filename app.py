@@ -86,7 +86,8 @@ def run_prompt(prompt: str, live_model: bool, live_weather: bool) -> None:
     if not prompt:
         return
     st.session_state.messages.append({"role": "user", "content": prompt})
-    agent = TravelAgent(live_model=live_model, live_weather=live_weather)
+    agent_mode = live_model and st.session_state.get("agent_mode", True)
+    agent = TravelAgent(live_model=live_model, live_weather=live_weather, agent_mode=agent_mode)
     try:
         with st.spinner("正在提取需求、查询工具并检查约束…"):
             result = agent.turn(prompt, st.session_state.request)
@@ -160,6 +161,9 @@ with st.sidebar:
     live_model = st.toggle("使用 DeepSeek API", value=has_key, disabled=not has_key)
     if not has_key:
         st.caption("未检测到 DEEPSEEK_API_KEY，开关不可用。在项目根目录的 .env 文件中写入密钥并重启页面后才能开启。")
+    st.toggle("Agent 模式：模型自主调用工具", value=True, key="agent_mode", disabled=not live_model)
+    st.caption("开启后由 DeepSeek 决定何时修改需求、查天气、规划和重新规划，步骤见“执行轨迹”；"
+               "价格与天气仍由工具计算。关闭时模型只负责理解需求。")
     live_weather = st.toggle("查询实时天气", value=False)
     st.caption("无 Key 时使用规则提取。关闭天气查询时不联网；雨天只来自你在对话中的说明。")
     st.divider()

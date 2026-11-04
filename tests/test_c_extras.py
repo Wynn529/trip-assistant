@@ -77,5 +77,16 @@ class ModelGuardVocabularyTests(unittest.TestCase):
         self.assertEqual(result.elderly, 1)
 
 
+class KinshipTermTests(unittest.TestCase):
+    def test_family_terms_without_model(self):
+        from travel_agent.llm import fallback_extract
+        for text, party in (("带着老爸老妈去上海玩", (1, 2, 0)), ("带爸妈去成都三天", (1, 2, 0)),
+                            ("我和老婆带个娃去北京", (2, 0, 1)), ("带爷爷奶奶和外婆去广州", (1, 3, 0)),
+                            ("不带爸妈，去上海", (1, 0, 0)), ("带一位老人去成都", (1, 1, 0))):
+            with self.subTest(text=text):
+                result = fallback_extract(text)
+                self.assertEqual((result.adults, result.elderly, result.children), party)
+
+
 if __name__ == "__main__":
     unittest.main()

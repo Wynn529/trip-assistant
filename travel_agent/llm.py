@@ -182,6 +182,26 @@ def _local_extract(text: str, previous: TripRequest | None = None):
             numeric_update(name, count[1])
         elif name != "adults" and re.search(words, text):
             update(name, max(1, getattr(result, name)))
+    # C 补充：亲属称呼。爸妈、爷爷奶奶等按老人计；老婆、老公等表示成人 2 位（本人加伴侣）；娃、宝宝按儿童计。
+    # 只在本轮没有明确写出对应人数时生效。
+    if "elderly" not in explicit and re.search(r"(?:不带|没有|不含)(?:爸妈|父母|老爸|老妈|爷爷|奶奶|外公|外婆)", text):
+        update("elderly", 0)
+    elif "elderly" not in explicit:
+        kin = 0
+        remaining = text
+        for pair in ("爸妈", "父母", "爷爷奶奶", "外公外婆", "姥姥姥爷"):
+            if pair in remaining:
+                kin += 2
+                remaining = remaining.replace(pair, "")
+        for single in (r"老爸|爸爸|父亲", r"老妈|妈妈|母亲", r"爷爷", r"奶奶", r"外公|姥爷", r"外婆|姥姥"):
+            if re.search(single, remaining):
+                kin += 1
+        if kin:
+            update("elderly", min(kin, 10))
+    if "adults" not in explicit and re.search(r"老婆|老公|妻子|丈夫|爱人|对象|男朋友|女朋友|媳妇", text):
+        update("adults", 2)
+    if "children" not in explicit and re.search(r"娃|宝宝|儿子|女儿", text):
+        update("children", max(1, getattr(result, "children")))
     # C 补充：本轮明确列出成人或儿童人数、没提老人，且老人数仍是演示默认值时，按 0 位老人计。
     if ("adults" in explicit or "children" in explicit) and "elderly" not in explicit \
             and "elderly" in result.assumed_fields:
