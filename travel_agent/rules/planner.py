@@ -75,9 +75,10 @@ def build_city_plan(
             )
             if replace:
                 # C 修复：也排除当天稍后本来就安排的景点，避免同一天重复。
-                replacement = next(
-                    (x for x in rainy_options if x not in used and x not in selected and x not in base), None
-                )
+                # C 修复：优先选后面几天也没有安排的室内景点，避免跨天重复；实在没有再退而求其次。
+                later = {item for plan in normal_days[day_number:request.days] for item in plan}
+                fresh = [x for x in rainy_options if x not in used and x not in selected and x not in base]
+                replacement = next((x for x in fresh if x not in later), None) or next(iter(fresh), None)
                 if replacement:
                     selected.append(replacement)
                     changes.append(f"第{day_number}天：将{activity['name']}替换为{activities[replacement]['name']}（雨天/行动强度约束）。")

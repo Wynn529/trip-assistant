@@ -81,6 +81,37 @@ class AgentLoopTests(unittest.TestCase):
         plans = [t for t in result.trace if "plan_trip" in t["detail"]]
         self.assertEqual(len(plans), 2)
 
+    def test_try_plan_compares_without_changing_request(self):
+        model = ScriptedModel(
+            say(call("update_request", {"city": "上海", "days": 3, "elderly": 2, "budget": 2000})),
+            say(call("plan_trip")),
+            say(call("try_plan", {"changes": {"days": 2}})),
+            say(call("finish", {"reply": "PLACEHOLDER"})),
+        )
+        agent = self.agent(model)
+        result = agent.turn("带爸妈去上海三天，预算2000")
+        self.assertEqual(result.request.days, 3)
+        trial = json.loads(model.payloads[3]["messages"][-1]["content"])
+        self.assertEqual(trial["days"], 2)
+        self.assertLess(trial["total_cost"], result.total_cost)
+        plan = json.loads(model.payloads[2]["messages"][-1]["content"])
+        self.assertEqual(plan["over_budget_by"], result.total_cost - 2000)
+        self.assertTrue(any("try_plan" in t["detail"] for t in result.trace))
+
+    def test_reply_may_use_gap_and_trial_numbers(self):
+        probe = TravelAgent(live_weather=False)
+        full = probe.pipeline_turn("继续", TripRequest(city="上海", days=3, elderly=2, adults=1, budget=2000, assumed_fields=[]))
+        short = probe.pipeline_turn("继续", TripRequest(city="上海", days=2, elderly=2, adults=1, budget=2000, assumed_fields=[]))
+        reply = f"3天估算{full.total_cost}元，超出{full.total_cost - 2000}元；改成2天约{short.total_cost}元。"
+        model = ScriptedModel(
+            say(call("update_request", {"city": "上海", "days": 3, "elderly": 2, "adults": 1, "budget": 2000})),
+            say(call("plan_trip")),
+            say(call("try_plan", {"changes": {"days": 2}})),
+            say(call("finish", {"reply": reply})),
+        )
+        result = self.agent(model).turn("带爸妈去上海三天，预算2000")
+        self.assertEqual(result.answer, reply)
+
     def test_invented_numbers_are_rejected(self):
         model = ScriptedModel(
             say(call("update_request", {"city": "成都"})),
