@@ -163,6 +163,7 @@ class TravelAgent:
             answer=answer,
             budget_status=budget_status,
             extraction_status=extraction_status,
+            schema_version="1.0",
         )
 
     def _weather(self, request: TripRequest) -> WeatherContext:
