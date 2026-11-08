@@ -232,10 +232,14 @@ class AgentLoop:
             return None
 
         # 模型未规划或规划后又改了需求：由系统补一次规划，保证结果与最终需求一致。
-        if self.response is None or self.planned_request != self.request.to_dict():
-            self.tool_plan_trip({})
-            self.steps.append({"step": "Agent 补充", "detail": "按最终需求重新执行 plan_trip"})
-        return self._finalize(reply, questions, before)
+        try:
+            if self.response is None or self.planned_request != self.request.to_dict():
+                self.tool_plan_trip({})
+                self.steps.append({"step": "Agent 补充", "detail": "按最终需求重新执行 plan_trip"})
+            return self._finalize(reply, questions, before)
+        except Exception as exc:
+            self.agent._agent_fallback_note = f"Agent 模式失败（{type(exc).__name__}），已回退固定流程"
+            return None
 
     def _describe(self, name: str, args: dict, result: dict) -> str:
         if name == "update_request":
@@ -270,6 +274,7 @@ class AgentLoop:
             trace.append({"step": "回复校验", "detail": "模型未给出回复，使用规则模板"})
         elif stray:
             answer = r.answer
+            questions = []  # A 修复：被拦截的数字也不能通过追问重新进入回复。
             trace.append({"step": "回复校验", "detail": f"回复含工具结果之外的数字（{'、'.join(stray)}），已改用规则模板"})
         else:
             answer = reply

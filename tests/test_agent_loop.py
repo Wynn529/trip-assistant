@@ -177,6 +177,30 @@ class AgentLoopTests(unittest.TestCase):
     def test_agent_mode_off_by_default(self):
         self.assertFalse(TravelAgent(live_weather=False).agent_mode)
 
+    def test_rejected_numbers_do_not_leak_through_follow_up(self):
+        model = ScriptedModel(say(call("plan_trip")), say(call("finish", {
+            "reply": "行程已生成。", "follow_up_questions": ["需要加购123456元的套餐吗？"]})))
+        result = self.agent(model).turn("去成都")
+        self.assertNotIn("123456", result.answer)
+        self.assertTrue(any("改用规则模板" in t["detail"] for t in result.trace))
+
+    def test_supplementary_planning_failure_falls_back(self):
+        model = ScriptedModel(say(call("finish", {"reply": "好的。"})),
+                              {"choices": [{"message": {"content": '{"updates": {}}'}}]})
+        agent = self.agent(model)
+        respond = agent.respond
+        with patch.object(agent, "respond", side_effect=[RuntimeError("private tool details"),
+                          respond("去成都", TripRequest(), "离线回退")]):
+            result = agent.turn("去成都")
+        self.assertEqual(result.trace[0]["step"], "Agent 回退")
+        self.assertIn("RuntimeError", result.trace[0]["detail"])
+        self.assertNotIn("private tool details", result.trace[0]["detail"])
+
+    def test_contract_version_is_explicit_in_both_modes(self):
+        model = ScriptedModel(say(call("plan_trip")), say(call("finish", {"reply": "好的。"})))
+        self.assertEqual(self.agent(model).turn("去成都").to_dict()["schema_version"], "1.0")
+        self.assertEqual(TravelAgent(live_weather=False).turn("去成都").to_dict()["schema_version"], "1.0")
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -1,18 +1,77 @@
 {
-  "delivery_version": "A-1.2-review",
+  "delivery_version": "A-agent-integration-20261108",
   "contract_schema_version": "1.0",
-  "generated_at": "2026-11-02T20:42:13.092201+08:00",
+  "generated_at": "2026-11-08T17:14:45.101572+08:00",
   "python": "3.14.6",
   "status": "passed",
-  "log": "docs/evidence/agent-checks-20261102-204213-092201.log",
+  "log": "docs/evidence/agent-checks-20261108-171445-101572.log",
   "source_sha256": {
-    "travel_agent/contracts.py": "ecbde5bd4e8523571c3b6a38b17756c01290ce7d79bb8f1780a369f825c21068",
-    "travel_agent/llm.py": "83fd149c040ecc7dca4d88f1ecd939e1cf7d4b5e46f29132034e92eac0f302ae",
-    "travel_agent/service.py": "304dff26414db9bb39363e4b1b97d7ab03c05dec2fb2035fd659d70872662765",
-    "tests/test_agent.py": "8590cc23322e1fe8dafa5fca708025b23dead06852f097aa6a565e7600f0d281",
     "demo_agent.py": "725ab9fcf47803d499be3b0659a7d287c6a7f5d3e740d095a9df830634187b38",
-    "run_agent_checks.py": "ed75a78f79a174dbaac6ace27941ee1cc68746f966964413c1073114e5c122e5"
+    "run_agent_checks.py": "77a330bc433cede67d2fac18f31e514703209c045362509b4bd50b49b8913b3b",
+    "tests/test_agent.py": "8590cc23322e1fe8dafa5fca708025b23dead06852f097aa6a565e7600f0d281",
+    "tests/test_agent_loop.py": "d8d3196c35198a3ccf2f6b3d92105da4daa8f881ae8f4c8ae07fb9a283daf7f1",
+    "tests/test_c_extras.py": "2b259627652d62817ad32a804a6d09f1413cb271ee4c789db0569ea563afe03a",
+    "tests/test_cities.py": "484b704bdb17823e7cc95f953b01574a3a068e0f77468a3f94528e186c7e7f80",
+    "travel_agent/__init__.py": "2a0fe3eaba5e4a797029da6f1e5422451f51dc4276a53516f54d25ee9810cfcd",
+    "travel_agent/agent_loop.py": "45c962634edd44e4411b96cd94a0516d886387aaa688c4d186a04011eabbebf2",
+    "travel_agent/contracts.py": "ecbde5bd4e8523571c3b6a38b17756c01290ce7d79bb8f1780a369f825c21068",
+    "travel_agent/data/__init__.py": "282e6172922a517c836c70206cb665d8db5a84f631961e85b71260a4610f023b",
+    "travel_agent/data/beijing.json": "0d3c1c7ae86f797b57f713d4d04b686dd6f83fb2a005643b562acf5e012c5f0b",
+    "travel_agent/data/catalog.py": "8fd4bb4c90bfc1bc852c86d6c3d642cea32c1401f1b47657c46a4abc40cf7ce8",
+    "travel_agent/data/chengdu.json": "696463d55f7037467e4f13403a7f39a98788b87339b9c8c306f67d4de32511dd",
+    "travel_agent/data/chongqing.json": "6fbd68dfee881f8f969ed9fac558fb803b4f6e0ffc4977af43fd1f184e1a9bb6",
+    "travel_agent/data/guangzhou.json": "03d995edd08b1e2d2ebd8d4eee5b2e4d26752a3e4be982ef90b384c9470fa287",
+    "travel_agent/data/shanghai.json": "7f44ea2542fc12cefad4770d42808c92ce0f57a70e6b0aa01483e13a1f3bb628",
+    "travel_agent/data/xian.json": "167c12931e904062c036df32c0be982caabce718c9000fb214a3b90a4f0e983c",
+    "travel_agent/llm.py": "47eedcdfa890ed1262f7b33257f48caaeb2a99781f616c3a66c115d7faa93913",
+    "travel_agent/rules/__init__.py": "021e44317f624668d068979796b3e966ebdb89b61857e538b2d9bfc3135c434a",
+    "travel_agent/rules/planner.py": "7a146136da7fa23e4b924cf34f1b654b1c087ec60e03c7cf5257ca5e7d09da22",
+    "travel_agent/service.py": "f1aa48a02921bb9a75607d02b056ab20d0f20dba88a9eeb28fbdc718b30d883f",
+    "travel_agent/storage/__init__.py": "7104b500f2c3b1f2980515c310aa487e48fad260833fbe90602b8c16335c2aa5",
+    "travel_agent/storage/exports.py": "9dd050a7ba4f7857a875f0d98f306617454956b08a862f1a2cb3ec8ce06b3c30",
+    "travel_agent/storage/local.py": "7b63a740c75d6fcf2d71288f6cf57639b83dc9694a688a3b3745e0dfcb2fec25",
+    "travel_agent/tools/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "travel_agent/tools/weather.py": "6e1d1fce91ce9418f87543cbb051b571d24634db6e0544450ec116af589deb6d",
+    "travel_agent/ui/__init__.py": "cc3d7b17431bbdaefcc31ef8778eb181d132b100ed6bfd993b4214bf1a6c6957",
+    "travel_agent/ui/theme.py": "900a059b2406bf821c1ad4112b5940e1b17519d857544ec3e4ca9d4271feac62"
   },
-  "real_model_test": "not tested",
-  "real_weather_test": "not tested"
+  "real_model_test": "historical evidence; not rerun in this offline check",
+  "real_weather_test": "not tested",
+  "test_scope": "all tests/test_*.py, including scripted Agent tests",
+  "checks": [
+    {
+      "command": [
+        "C:\\Python314\\python.exe",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "exit_code": 0,
+      "test_count": 87
+    },
+    {
+      "command": [
+        "C:\\Python314\\python.exe",
+        "-B",
+        "demo_agent.py",
+        "--write-evidence"
+      ],
+      "exit_code": 0,
+      "test_count": null
+    }
+  ],
+  "source_base_commit": "6eb76adb95c24b7b47af2f38db789868cc683dc3",
+  "real_model_evidence": {
+    "path": "docs/evidence/agent-live-20261104-224159.json",
+    "sha256": "edcab54af06a480bb83aa22eb96e6fdf1a4f527211ce599b8c6dedee732ca3d7",
+    "generated_at": "2026-11-04T22:41:59.837846+08:00",
+    "mode": "agent, live DeepSeek, weather off",
+    "rounds": 3,
+    "provenance": "C-provided saved live-call record; no independent network replay",
+    "source_match": "historical record has no source hashes; not proof of current-code live success"
+  }
 }

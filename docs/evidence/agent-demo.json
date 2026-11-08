@@ -1,14 +1,14 @@
 {
   "delivery_version": "A-1.2-review",
   "contract_schema_version": "1.0",
-  "generated_at": "2026-11-02T20:42:14.096092+08:00",
+  "generated_at": "2026-11-08T17:14:48.377307+08:00",
   "python": "3.14.6",
   "mode": "offline; model/weather success cases are test doubles",
   "network_calls": 0,
   "rounds": [
     {
       "input": "去成都三天，预算3000元，带一位老人",
-      "elapsed_seconds": 0.014519,
+      "elapsed_seconds": 0.031352,
       "response": {
         "request": {
           "city": "成都",
@@ -215,7 +215,7 @@
     },
     {
       "input": "第二天下雨，改成室内行程",
-      "elapsed_seconds": 0.001747,
+      "elapsed_seconds": 0.004881,
       "response": {
         "request": {
           "city": "成都",
@@ -428,7 +428,7 @@
     },
     {
       "input": "预算降到2500元",
-      "elapsed_seconds": 0.000341,
+      "elapsed_seconds": 0.000852,
       "response": {
         "request": {
           "city": "成都",
@@ -642,7 +642,7 @@
     },
     {
       "input": "尽量少走路",
-      "elapsed_seconds": 0.000341,
+      "elapsed_seconds": 0.00093,
       "response": {
         "request": {
           "city": "成都",
@@ -839,7 +839,7 @@
   "scenarios": {
     "non_chengdu": {
       "input": "去杭州三天，预算3000元",
-      "elapsed_seconds": 0.000353,
+      "elapsed_seconds": 0.000341,
       "response": {
         "request": {
           "city": "杭州",
@@ -995,7 +995,7 @@
     },
     "weather_failure": {
       "input": "去成都三天，第二天下雨",
-      "elapsed_seconds": 0.000367,
+      "elapsed_seconds": 0.001676,
       "response": {
         "request": {
           "city": "成都",
@@ -1210,7 +1210,7 @@
     },
     "invalid_date": {
       "input": "出发日期改为2026-02-30",
-      "elapsed_seconds": 0.000321,
+      "elapsed_seconds": 0.000889,
       "response": {
         "request": {
           "city": "成都",
@@ -1422,7 +1422,7 @@
     },
     "zero_budget": {
       "input": "去成都三天，预算0元",
-      "elapsed_seconds": 0.000379,
+      "elapsed_seconds": 0.000951,
       "response": {
         "request": {
           "city": "成都",
@@ -1635,7 +1635,7 @@
     },
     "seven_days": {
       "input": "去成都七天",
-      "elapsed_seconds": 0.000369,
+      "elapsed_seconds": 0.000989,
       "response": {
         "request": {
           "city": "成都",
@@ -1960,7 +1960,7 @@
     },
     "no_key": {
       "input": "去成都三天，预算3000元，带一位老人",
-      "elapsed_seconds": 0.000363,
+      "elapsed_seconds": 0.000931,
       "response": {
         "request": {
           "city": "成都",
@@ -2168,7 +2168,7 @@
     },
     "model_timeout": {
       "input": "预算降到2500元",
-      "elapsed_seconds": 0.000396,
+      "elapsed_seconds": 0.001196,
       "response": {
         "request": {
           "city": "成都",
@@ -2364,7 +2364,7 @@
     },
     "bad_json": {
       "input": "预算降到2500元",
-      "elapsed_seconds": 0.000419,
+      "elapsed_seconds": 0.001074,
       "response": {
         "request": {
           "city": "成都",
@@ -2560,7 +2560,7 @@
     },
     "mock_model_success": {
       "input": "预算降到2500元",
-      "elapsed_seconds": 0.000414,
+      "elapsed_seconds": 0.000969,
       "response": {
         "request": {
           "city": "成都",
@@ -2755,7 +2755,7 @@
     },
     "mock_weather_success": {
       "input": "去成都三天，2026-10-28出发",
-      "elapsed_seconds": 0.000439,
+      "elapsed_seconds": 0.000951,
       "response": {
         "request": {
           "city": "成都",
@@ -2977,12 +2977,12 @@
       }
     },
     "weather_out_of_range": {
-      "input": "去成都三天，2027-01-01出发",
-      "elapsed_seconds": 0.00041,
+      "input": "去成都三天，2027-01-07出发",
+      "elapsed_seconds": 0.000887,
       "response": {
         "request": {
           "city": "成都",
-          "start_date": "2027-01-01",
+          "start_date": "2027-01-07",
           "days": 3,
           "budget": 3000,
           "adults": 1,
@@ -3128,22 +3128,22 @@
         "booking_tasks": [
           {
             "task": "核对并预订住宿",
-            "due": "2026-12-25",
+            "due": "2026-12-31",
             "status": "待办"
           },
           {
             "task": "核对往返交通和证件",
-            "due": "2026-12-25",
+            "due": "2026-12-31",
             "status": "待办"
           },
           {
             "task": "出发前复查天气，必要时带伞",
-            "due": "2026-12-25",
+            "due": "2026-12-31",
             "status": "待办"
           },
           {
             "task": "检查身份证及票证",
-            "due": "2027-01-01",
+            "due": "2027-01-07",
             "status": "待办"
           }
         ],
